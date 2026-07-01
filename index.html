@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Sayed Elattar &#x2014; Arabic Localisation &amp; LQA Authority</title>
-<meta name="description" content="The definitive Arabic localisation and LQA authority in the MENA market. 17,882 tasks. 11.1M equivalent translation words. 7,454 verified LQA hours. Principal Consultant."/>
+<title>Sayed Elattar &#x2014; Arabic Localisation &amp; LQA Lead</title>
+<meta name="description" content="18 years of Arabic localisation &amp; LQA leadership across 10 enterprise domains. 17,882 verified tasks. 11.1M equivalent translation words. 7,454 audited LQA hours."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -15,13 +15,13 @@
   --bg2:    #141210;
   --bg3:    #1E1C18;
   --ink:    #F2EDE6;
-  --dim:    rgba(242,237,230,.42);
-  --faint:  rgba(242,237,230,.18);
+  --dim:    rgba(242,237,230,.52);
+  --faint:  rgba(242,237,230,.24);
   --ghost:  rgba(242,237,230,.07);
   --rule:   rgba(242,237,230,.10);
   --rule2:  rgba(242,237,230,.18);
-  --red:    #C41E3A;
-  --red-bg: rgba(196,30,58,.08);
+  --red:    #B8923A;
+  --red-bg: rgba(184,146,58,.08);
   --at: #5BA4E8; --ar: #29BFD4; --am: #A87FD4; --ah: #29C490;
   --display:'DM Serif Display', Georgia, serif;
   --body:   'Inter', system-ui, sans-serif;
@@ -38,8 +38,8 @@
   --sz-h2:    clamp(32px, 4vw, 60px);
   --sz-h3:    clamp(22px, 2.5vw, 34px);
   --sz-body:  clamp(14px, 1.1vw, 16px);
-  --sz-small: clamp(11px, .9vw, 13px);
-  --sz-mono:  clamp(9px,  .75vw, 11px);
+  --sz-small: clamp(12px, 1vw, 14px);
+  --sz-mono:  clamp(10px, .8vw, 12px);
   /* Content width */
   --max:     1400px;
   --prose:   68ch;
@@ -65,6 +65,12 @@ body {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* ── SCROLL PROGRESS ────────────────────────────────────────────────────── */
+#scrollProgress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--red); z-index: 400; transition: width .1s linear;
 }
 
 /* ── NAV ────────────────────────────────────────────────────────────────── */
@@ -103,8 +109,41 @@ nav.scrolled {
   transition: opacity .18s; white-space: nowrap;
 }
 .nav-brief:hover { opacity: .88; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 34px; height: 34px; background: none; border: none; cursor: pointer;
+  padding: 0;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 1px; background: var(--ink);
+  transition: transform .25s, opacity .25s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.nav-mobile {
+  display: none;
+  position: fixed; top: 58px; left: 0; right: 0; z-index: 299;
+  background: rgba(12,11,9,.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--rule);
+  flex-direction: column;
+  padding: 8px clamp(24px, 5vw, 72px) 20px;
+  transform: translateY(-8px); opacity: 0; pointer-events: none;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.nav-mobile.open { display: flex; transform: translateY(0); opacity: 1; pointer-events: auto; }
+.nav-mobile a {
+  font-family: var(--mono); font-size: 13px; color: var(--dim);
+  text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 14px 0; border-top: 1px solid var(--rule);
+}
+.nav-mobile a:first-child { border-top: none; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-brief { display: none; }
 }
 
 /* ── LAYOUT UTILITY ─────────────────────────────────────────────────────── */
@@ -793,6 +832,8 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 </head>
 <body>
 
+<div id="scrollProgress"></div>
+
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-id">Sayed Elattar</a>
@@ -805,8 +846,22 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
     <li><a href="#studio">Studio</a></li>
     <li><a href="#contact">Collaborate</a></li>
   </ul>
-  <a href="mailto:sayyed.elattar@gmail.com" class="nav-brief">Let&#x2019;s Collaborate &#x2192;</a>
+  <div class="nav-right">
+    <a href="mailto:sayyed.elattar@gmail.com" class="nav-brief">Let&#x2019;s Collaborate &#x2192;</a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#perspective">Perspective</a>
+  <a href="#record">Record</a>
+  <a href="#matrix">Capability</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#platforms">Platforms</a>
+  <a href="#studio">Studio</a>
+  <a href="#contact">Collaborate</a>
+</div>
 
 <!-- ═══════════════════════════════
      HERO
@@ -815,9 +870,9 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 <div id="hero">
   <div class="hero-claim">
     <div class="rv">
-      <div class="eyebrow">Arabic Linguist &#x00B7; LQA Lead &#x00B7; AI Quality Specialist &#x00B7; MTPE Expert &#x00B7; UI/UX Context Tester &#x00B7; Tech Mentor &amp; CAT Tool Expert &#x00B7; Since 2008</div>
-      <h1 class="hero-h">Every word that<br>fails in Arabic<br>is a market<br><i>someone else<br>is winning.</i></h1>
-      <p class="hero-sub">Seventeen years of Arabic localisation built on one principle: quality that survives audit, every time. 17,882 tasks, 7,454 verified LQA hours, and an unbroken production record &#x2014; so the only thing your Arabic-speaking customers notice is that the product was made for them.</p>
+      <div class="eyebrow">Arabic Linguist &#x00B7; LQA Lead &#x00B7; AI Quality Specialist &#x00B7; MTPE Expert &#x00B7; UI/UX Context Tester &#x00B7; Tech Mentor &amp; CAT Tool Expert &#x00B7; In the industry since 2008</div>
+      <h1 class="hero-h">Arabic that reads<br>like it was written<br>for your customer<br><i>&#x2014; not translated<br>for them.</i></h1>
+      <p class="hero-sub">18 years in Arabic localisation, and an unbroken, verifiable production record from April 2010 to today: 17,882 tasks, 7,454 verified LQA hours, quality that survives audit &#x2014; so the only thing your Arabic-speaking customers notice is that the product was made for them.</p>
       <a href="#perspective" class="hero-cta">See the evidence <span class="hero-cta-arrow">&#x2192;</span></a>
     </div>
   </div>
@@ -860,19 +915,19 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
       <span class="pt-ghost">8.7</span>
       <span class="pt-tag">Scale Equivalence</span>
       <span class="pt-n">8.7<sub>yrs</sub></span>
-      <p class="pt-claim">of a full-time translator working <b>every single day</b> &#x2014; delivered by one practitioner alongside 7,454 hours of LQA auditing, 690,000 MTPE words, and style guide creation for 18 enterprise clients. This is not freelance output. This is institutional scale.</p>
+      <p class="pt-claim">of a full-time translator working <b>every single day</b> &#x2014; delivered by one practitioner alongside 7,454 hours of LQA auditing, 690,000 MTPE words, and style guide creation for 18 enterprise clients, sustained without interruption since 2010.</p>
     </div>
     <div class="pt-cell">
       <span class="pt-ghost">10</span>
-      <span class="pt-tag">Domain Rarity Index</span>
+      <span class="pt-tag">Domain Breadth</span>
       <span class="pt-n">10<sub>domains</sub></span>
-      <p class="pt-claim">maintained <b>simultaneously</b> with verified task-count evidence in each. Most Arabic translators specialise in 1&#x2013;2 domains. The probability of another individual holding enterprise-grade history in all ten is effectively zero.</p>
+      <p class="pt-claim">maintained <b>simultaneously</b> with verified task-count evidence in each &#x2014; automotive, software, hardware, e-learning, luxury, HSE, medical, gaming, cybersecurity, and legal.</p>
     </div>
     <div class="pt-cell">
       <span class="pt-ghost">17</span>
       <span class="pt-tag">Continuity Signal</span>
       <span class="pt-n">17<sub>yrs</sub></span>
-      <p class="pt-claim">consecutive active years at one ISO 27001-certified LSP inside the Welocalize supply chain &#x2014; zero gaps. Enterprise localisation teams do <b>not renew vendor relationships for 17 years</b> unless the quality record is perfect.</p>
+      <p class="pt-claim">consecutive active years (2010&#x2013;2026) in a single ISO 27001-certified LSP supply chain &#x2014; without a gap since returning from national service.</p>
     </div>
   </div>
 
@@ -899,8 +954,8 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 <div class="section" id="record">
 <div class="wrap">
   <div class="eyebrow rv">02 / Production Record</div>
-  <h2 class="h-section rv d1">Sixteen years.<br><b>One ledger.</b></h2>
-  <p class="body-text rv d2">Verified metrics from project records spanning April 2010 &#x2013; June 2026. Data is current, not closed &#x2014; 17 consecutive active years, zero gaps.</p>
+  <h2 class="h-section rv d1">Seventeen years.<br><b>One ledger.</b></h2>
+  <p class="body-text rv d2">Verified metrics from project records spanning April 2010 &#x2013; June 2026 &#x2014; 17 consecutive active years, zero gaps. Career start: July 2008, interrupted by mandatory national service and resumed in April 2010, from which this unbroken record runs.</p>
 
   <!-- Capacity Clock -->
   <div class="clock-wrap rv d2">
@@ -911,7 +966,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
       <div class="cl-item">
         <span class="cl-tag">Career Average / Year</span>
         <div class="cl-n">654K</div>
-        <p class="cl-desc"><b>130.9% of single-service baseline.</b> Multi-service stacking (translation + revision + LQA + MTPE concurrently) produces above-baseline output without overproduction. The 70% productivity target (350K eq.w/year) is exceeded in every year on record.</p>
+        <p class="cl-desc"><b>130.8% of single-service baseline.</b> Multi-service stacking (translation + revision + LQA + MTPE concurrently) produces above-baseline output without overproduction. The 70% productivity target (350K eq.w/year) is exceeded in every full calendar year on record (2011&#x2013;2025); 2010 and 2026 are partial years (first months back from national service, and year-to-date).</p>
       </div>
       <div class="cl-item">
         <span class="cl-tag">Capacity Logic Model</span>
@@ -921,7 +976,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
           <div class="cap-row"><span class="cr-l">Peak year 2019</span><div class="cr-t"><div class="cr-f" data-w="100" style="width:0;background:var(--red)"></div></div><span class="cr-v">994K</span></div>
           <div class="cap-row"><span class="cr-l">70% target floor</span><div class="cr-t"><div class="cr-f" data-w="53" style="width:0;background:rgba(242,237,230,.22)"></div></div><span class="cr-v">350K</span></div>
         </div>
-        <p class="cap-note"><b>Basis:</b> 250 working days/year &#x00D7; 2,000 w/day = 500K baseline. Career flat-rate 11,115,445 &#x00F7; 17 years = <b>654,379 eq.w/year = 130.9% of baseline.</b></p>
+        <p class="cap-note"><b>Basis:</b> 250 working days/year &#x00D7; 2,000 w/day = 500K baseline. Career flat-rate 11,115,445 &#x00F7; 17 years = <b>653,850 eq.w/year = 130.8% of baseline.</b></p>
       </div>
     </div>
   </div>
@@ -958,8 +1013,8 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 <div class="section" id="matrix">
 <div class="wrap">
   <div class="eyebrow rv">03 / Capability Matrix</div>
-  <h2 class="h-section rv d1">Enterprise friction.<br><b>Resolved.</b></h2>
-  <p class="body-text rv d2">Seven categories of Arabic localisation failure. This practice was built to eliminate each one.</p>
+  <h2 class="h-section rv d1">Where Arabic localisation<br><b>often breaks.</b></h2>
+  <p class="body-text rv d2">Seven recurring failure points in enterprise Arabic localisation, and how this practice addresses each one.</p>
   <div class="matrix rv d2">
 
     <div class="mx">
@@ -1005,9 +1060,9 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
     </div>
 
     <div class="mx">
-      <div class="mx-l"><div class="mx-fr">Friction 07 / Strategic Advisory</div><div class="mx-h">No internal MENA linguistic authority to advise product and engineering upstream.</div></div>
+      <div class="mx-l"><div class="mx-fr">Friction 07 / Strategic Advisory</div><div class="mx-h">No internal Arabic linguistic expertise to advise product and engineering teams upstream.</div></div>
       <div class="mx-r"><div class="mx-cap-tag">Strategic Localisation Consulting</div>
-        <p class="mx-body">Sixteen years at the intersection of Arabic linguistic standards, enterprise QA frameworks, and digital product delivery generates a perspective that no translation service can offer: <b>the ability to advise upstream.</b> Consulting engagements cover: Arabic i18n audit, MSA register strategy for new market entry, Arabic UI/UX review for product teams, LQA framework design, vendor scorecard architecture, and Arabic style guide creation for in-house localisation teams.</p>
+        <p class="mx-body">Seventeen years at the intersection of Arabic linguistic standards, enterprise QA frameworks, and digital product delivery supports upstream advisory work alongside day-to-day production. Consulting engagements cover: Arabic i18n audit, MSA register strategy for new market entry, Arabic UI/UX review for product teams, LQA framework design, vendor scorecard architecture, and Arabic style guide creation for in-house localisation teams.</p>
         <span class="mx-proof">17-year practitioner &#x00B7; i18n audit &#x00B7; MSA strategy &#x00B7; LQA framework design</span></div>
     </div>
 
@@ -1022,7 +1077,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 <div class="wrap">
   <div class="eyebrow rv">04 / Technical Leadership</div>
   <h2 class="h-section rv d1">Production.<br><b>And the systems<br>that govern it.</b></h2>
-  <p class="body-text rv d2">Long-term enterprise accounts are not sustained by individual output alone. Apple, Toyota, Makita, Canon, and Nissan have each been served for years through linguistic teams I have built, trained, and held to a final quality checkpoint &#x2014; the governance layer that makes 17 years without a missed deliverable possible.</p>
+  <p class="body-text rv d2">Long-term enterprise accounts are not sustained by individual output alone. Apple, Toyota, Makita, Canon, and Nissan have each been served for years through linguistic teams I have built, trained, and held to a final quality checkpoint &#x2014; the governance layer behind long-term account continuity.</p>
 
   <!-- Production vs Governance — 1px data-art split -->
   <div class="gov-art rv d2">
@@ -1054,9 +1109,9 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 ═══════════════════════════════ -->
 <div class="section" id="platforms">
 <div class="wrap">
-  <div class="eyebrow rv">05 / Platform Authority</div>
-  <h2 class="h-section rv d1">Inside the platforms<br><b>others cannot name.</b></h2>
-  <p class="body-text rv d2">Access to enterprise clients&#x2019; internal localisation platforms is not granted to general-market translators. These represent the most audited Arabic content pipelines in global technology.</p>
+  <div class="eyebrow rv">05 / Platform Experience</div>
+  <h2 class="h-section rv d1">Internal platforms<br><b>and systems.</b></h2>
+  <p class="body-text rv d2">Internal localisation platforms accessed through long-term enterprise engagements &#x2014; most referenced here by internal codename only, under standard NDA terms.</p>
 
   <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:var(--space-md) 0 14px;" class="rv d1">Apple Internal Localisation Infrastructure</div>
   <div class="apple-grid rv d1">
@@ -1122,15 +1177,15 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
       <div class="tl-when">Apr 2010 &#x2013; Present<br><br>Sr. Reviewer<br>2017&#x2013;2018<br><br>Reviewer<br>2014&#x2013;2016</div>
       <div>
         <div class="tl-role">Localisation &amp; LQA Lead &#x00B7; 3rd Party Reviewer</div>
-        <div class="tl-co">Future Group Language Solutions (FutureTrans) &#x00B7; Welocalize supply chain &#x00B7; ISO 27001-certified</div>
+        <div class="tl-co">Future Group Language Solutions (FutureTrans) &#x00B7; global enterprise LSP supply chain &#x00B7; ISO 27001-certified</div>
         <span class="tl-sub">Production scale</span>
         <ul class="bul">
-          <li><div>17,882 tasks &#x00B7; 12.87M raw words &#x00B7; 7,454 verified LQA hours &#x00B7; zero missed deliveries. Annual flat-rate average: 654,379 eq.w (130.9% of single-service baseline).</div></li>
+          <li><div>17,882 tasks &#x00B7; 12.87M raw words &#x00B7; 7,454 verified LQA hours. Annual flat-rate average: 653,850 eq.w (130.8% of single-service baseline).</div></li>
           <li><div>Multi-service stacking: translation, revision, LQA arbitration, MTPE auditing, and style guide creation delivered concurrently. 106 unique clients in a single year (2015).</div></li>
         </ul>
         <span class="tl-sub">Key platforms &amp; capabilities</span>
         <ul class="bul">
-          <li><div><b>Apple internal systems:</b> ATLAS (596 tasks), HAIKU (2,530 tasks), GUTENBERG (1,274 tasks), iCloud (162 tasks) &#x2014; the most audited Arabic content pipelines in global technology.</div></li>
+          <li><div><b>Apple internal systems:</b> ATLAS (596 tasks), HAIKU (2,530 tasks), GUTENBERG (1,274 tasks), iCloud (162 tasks) &#x2014; Arabic content audited under Apple&#x2019;s internal QA standards.</div></li>
           <li><div><b>GuideSim PACK &amp; GO (Scania):</b> Automotive dashboard validation across High/Standard screen profiles, Text ID tracking against Diff files, XTM integration. Toyota OSD (549 tasks / 791K words), Nissan in-car display, Canon OSD hardware.</div></li>
           <li><div><b>Luxury portfolio:</b> Porsche, Maserati, Lamborghini, Harley-Davidson &#x2014; Arabic premium register across four international luxury marques.</div></li>
           <li><div><b>Style guide creation:</b> 18 enterprise clients including Renault, Wizz Air, Amazon AWS, Peakon, and a telecom client (424,000-word glossary corpus). ~78 verified hours.</div></li>
@@ -1164,13 +1219,13 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 <div class="section" id="studio">
 <div class="wrap">
   <div class="eyebrow rv">08 / LocMasters&#x2122; Studio</div>
-  <h2 class="h-section rv d1">Building the tools<br><b>the market lacks.</b></h2>
-  <p class="body-text rv d2">An Arabic-first AI-powered CAT and LQA platform &#x2014; built because no existing tool solves Arabic localisation quality at the standard this practice operates at.</p>
+  <h2 class="h-section rv d1">Building the tools<br><b>this practice needed.</b></h2>
+  <p class="body-text rv d2">An Arabic-first AI-powered CAT and LQA platform, built to address gaps encountered directly in day-to-day Arabic QA work.</p>
   <div class="lm-grid rv d2">
     <div>
       <div class="lm-wm">LocMasters<span class="lm-tm">&#x2122;</span></div>
       <div class="lm-badge"><span class="lm-dot"></span><span class="lm-badge-txt">Active R&amp;D &#x00B7; Stealth Mode</span></div>
-      <p class="lm-desc">Multiple internal iterations deployed and benchmarked across real enterprise workflows. Currently being re-engineered in private development until it achieves market-leading precision and flawless UX benchmarks. Every tool resolves a specific failure mode encountered in 17 years of enterprise Arabic localisation &#x2014; nothing decorative.</p>
+      <p class="lm-desc">Multiple internal iterations deployed and benchmarked across real enterprise workflows. Currently being re-engineered in private development, with the goal of consistent precision and a clean, dependable UX. Each tool addresses a specific failure mode encountered over 17 years of enterprise Arabic localisation work &#x2014; nothing decorative.</p>
       <div class="lm-stack">
         <span class="lst">React 18</span><span class="lst">Vite</span><span class="lst">Supabase</span>
         <span class="lst">Tailwind CSS</span><span class="lst">Anthropic Claude API</span><span class="lst">RTL-native</span>
@@ -1201,7 +1256,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
   </div>
   <div class="lm-eng-grid rv d3">
     <div class="lm-eng"><span class="le-c">AI LQI Reviewer</span><div class="le-h">MQM / DQF / J2450 engine</div><p class="le-b">Configurable error weights, severity tiers (Critical / Major / Minor), sample-based batch review.</p></div>
-    <div class="lm-eng"><span class="le-c">Automated QA</span><div class="le-h">Zero false positives</div><p class="le-b">Numbers, tags, RTL validation, Arabic comma, truncation, consistency &#x2014; Sacred Silence philosophy.</p></div>
+    <div class="lm-eng"><span class="le-c">Automated QA</span><div class="le-h">Built to minimise false positives</div><p class="le-b">Numbers, tags, RTL validation, Arabic comma, truncation, consistency &#x2014; Sacred Silence philosophy.</p></div>
     <div class="lm-eng"><span class="le-c">MTPE Engine</span><div class="le-h">ISO 18587 aligned</div><p class="le-b">Fluency auditing, terminological precision, cultural accuracy flags, edit-distance scoring.</p></div>
     <div class="lm-eng"><span class="le-c">Arabic Proofreader</span><div class="le-h">Native linguistic engine</div><p class="le-b">Hamza, tashkeel normalisation, tanween placement, tatweel removal, formality control.</p></div>
   </div>
@@ -1258,7 +1313,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
     <div class="tool-row"><span class="tc">CAT Tools &amp; TMS</span><span class="tv-t">Trados Studio 2007&#x2013;2024, RWS Trados Enterprise, memoQ, Phrase, XTM, Smartling, Passolo, Wordfast Pro, Wordbee, Crowdin</span></div>
     <div class="tool-row"><span class="tc">UI Simulation</span><span class="tv-t">GuideSim PACK &amp; GO (Scania &#x2014; High / Standard screen profiles) &#x00B7; XTM live context validation</span></div>
     <div class="tool-row"><span class="tc">MTPE &amp; AI</span><span class="tv-t">MT post-editing &#x00B7; AI output auditing &#x00B7; LLM-assisted review &#x00B7; Prompt engineering (RWS Group Certified) &#x00B7; Agentic AI workflows &#x00B7; Anthropic computer-use API</span></div>
-    <div class="tool-row"><span class="tc">Enterprise QA</span><span class="tv-t">DQF-MQM scorecards &#x00B7; JIRA-integrated LQA &#x00B7; Lionbridge LQS &#x00B7; Welocalize DQF-MQM &#x00B7; TransPerfect QA</span></div>
+    <div class="tool-row"><span class="tc">Enterprise QA</span><span class="tv-t">DQF-MQM scorecards &#x00B7; JIRA-integrated LQA &#x00B7; multiple enterprise LSP scorecard systems</span></div>
     <div class="tool-row"><span class="tc">LocMasters&#x2122; Studio</span><span class="tv-t">AI LQI Reviewer &#x00B7; MTPE Engine &#x00B7; QA Automation &#x00B7; Arabic Proofreader &#x00B7; Glossary Creator (TBX) &#x00B7; TM Maintenance &#x2014; React 18 &#x00B7; Vite &#x00B7; Supabase &#x00B7; Anthropic Claude API &#x2014; Active R&amp;D</span></div>
     <div class="tool-row"><span class="tc">Compliance</span><span class="tv-t">ISO 27001-certified environment &#x00B7; GDPR-compliant data handling</span></div>
   </div>
@@ -1266,7 +1321,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
 </div>
 
 <footer>
-  <span class="ft-l">&#x00A9; 2026 Sayed Elattar &#x00B7; Arabic Localisation &amp; LQA Authority &#x00B7; Since 2008</span>
+  <span class="ft-l">&#x00A9; 2026 Sayed Elattar &#x00B7; Arabic Localisation &amp; LQA Lead &#x00B7; Since 2008</span>
   <div class="ft-r"><span>MQM &#x00B7; DQF</span><span>LocMasters&#x2122;</span><span>Arabic &#x2194; English</span><span>ISO 27001</span></div>
 </footer>
 
@@ -1300,9 +1355,27 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
 /* NAV scroll */
 (function(){
   const nav=document.getElementById('nav');
+  const prog=document.getElementById('scrollProgress');
   window.addEventListener('scroll',()=>{
     nav.classList.toggle('scrolled',window.scrollY>60);
+    const h=document.documentElement;
+    const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    if(prog) prog.style.width=Math.min(Math.max(pct,0),100)+'%';
   },{passive:true});
+})();
+
+/* MOBILE NAV */
+(function(){
+  const burger=document.getElementById('navBurger');
+  const menu=document.getElementById('navMobile');
+  if(!burger||!menu)return;
+  const close=()=>{burger.classList.remove('open');menu.classList.remove('open');burger.setAttribute('aria-expanded','false');};
+  burger.addEventListener('click',()=>{
+    const open=burger.classList.toggle('open');
+    menu.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
 })();
 
 /* EKG SPARK LINE */
@@ -1353,7 +1426,8 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
   if(hit){
     const upd=e=>{
       const r=svg.getBoundingClientRect();
-      const px=(e.clientX-r.left)/r.width;
+      const clientX=e.touches?e.touches[0].clientX:e.clientX;
+      const px=(clientX-r.left)/r.width;
       const idx=Math.max(0,Math.min(Math.round(px*(ANNUAL.length-1)),ANNUAL.length-1));
       const a=ANNUAL[idx];
       const pct=(idx/(ANNUAL.length-1))*100;
@@ -1365,6 +1439,11 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
     hit.addEventListener('mousemove',upd);
     hit.addEventListener('mouseleave',()=>{
       ndl.style.opacity='0';tip.style.opacity='0';
+    });
+    hit.addEventListener('touchstart',upd,{passive:true});
+    hit.addEventListener('touchmove',e=>{e.preventDefault();upd(e);},{passive:false});
+    hit.addEventListener('touchend',()=>{
+      setTimeout(()=>{ndl.style.opacity='0';tip.style.opacity='0';},1500);
     });
   }
 })();
@@ -1393,10 +1472,10 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
   // Three arcs:
   // 1. baseline (100%) — full sweep in ghost
   // 2. target (70%) — rule2 colour
-  // 3. actual (130.9%) — capped at 100% of sweep = full + goes past but we show 100% cap
+  // 3. actual (130.8%) — capped at 100% of sweep = full + goes past but we show 100% cap
   const baseEnd=startDeg+totalDeg;
   const targetEnd=startDeg+totalDeg*0.70;
-  const actualPct=Math.min(1.309,1); // cap display at 100% arc
+  const actualPct=Math.min(1.308,1); // cap display at 100% arc
   const actualEnd=startDeg+totalDeg*actualPct;
 
   svg.setAttribute('viewBox','0 0 320 320');
@@ -1409,9 +1488,9 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
     <path d="${arcPath(CX,CY,R_INNER,startDeg,baseEnd,1)}"
       fill="none" stroke="rgba(242,237,230,.06)" stroke-width="10"/>
 
-    <!-- Outer: actual career avg (130.9% = full arc, cardinal red) -->
+    <!-- Outer: actual career avg (130.8% = full arc, cardinal red) -->
     <path id="arc-actual" d="${arcPath(CX,CY,R_OUTER,startDeg,startDeg,1)}"
-      fill="none" stroke="#C41E3A" stroke-width="10" stroke-linecap="round"
+      fill="none" stroke="var(--red)" stroke-width="10" stroke-linecap="round"
       data-end="${actualEnd}">
       <animate attributeName="d"
         from="${arcPath(CX,CY,R_OUTER,startDeg,startDeg+0.01,1)}"
@@ -1440,9 +1519,9 @@ const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
       font-size="10" fill="rgba(242,237,230,.4)" letter-spacing="1">2010 &#x2013; 2026</text>
 
     <!-- Legend dots -->
-    <circle cx="${CX-50}" cy="${CY+76}" r="4" fill="#C41E3A"/>
+    <circle cx="${CX-50}" cy="${CY+76}" r="4" fill="var(--red)"/>
     <text x="${CX-40}" y="${CY+80}" font-family="IBM Plex Mono,monospace"
-      font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">CAREER AVG 130.9%</text>
+      font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">CAREER AVG 130.8%</text>
     <circle cx="${CX-50}" cy="${CY+96}" r="4" fill="rgba(242,237,230,.35)"/>
     <text x="${CX-40}" y="${CY+100}" font-family="IBM Plex Mono,monospace"
       font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">70% TARGET FLOOR</text>
