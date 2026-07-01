@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sayed Elattar &#x2014; Arabic Localisation &amp; LQA Authority</title>
+<meta name="description" content="The definitive Arabic localisation and LQA authority in the MENA market. 17,882 tasks. 11.1M equivalent translation words. 7,454 verified LQA hours. Principal Consultant."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ───────────────────────────────────────────────────────────── */
+:root {
+  --bg:     #0C0B09;
+  --bg2:    #141210;
+  --bg3:    #1E1C18;
+  --ink:    #F2EDE6;
+  --dim:    rgba(242,237,230,.42);
+  --faint:  rgba(242,237,230,.18);
+  --ghost:  rgba(242,237,230,.07);
+  --rule:   rgba(242,237,230,.10);
+  --rule2:  rgba(242,237,230,.18);
+  --red:    #C41E3A;
+  --red-bg: rgba(196,30,58,.08);
+  --at: #5BA4E8; --ar: #29BFD4; --am: #A87FD4; --ah: #29C490;
+  --display:'DM Serif Display', Georgia, serif;
+  --body:   'Inter', system-ui, sans-serif;
+  --mono:   'IBM Plex Mono', monospace;
+  /* Spacing scale */
+  --space-xs: clamp(16px, 2vw, 24px);
+  --space-sm: clamp(32px, 4vw, 48px);
+  --space-md: clamp(60px, 7vw, 96px);
+  --space-lg: clamp(96px, 11vw, 160px);
+  --space-xl: clamp(120px, 14vw, 200px);
+  /* Type scale */
+  --sz-hero:  clamp(52px, 8.5vw, 128px);
+  --sz-h1:    clamp(40px, 5.5vw, 80px);
+  --sz-h2:    clamp(32px, 4vw, 60px);
+  --sz-h3:    clamp(22px, 2.5vw, 34px);
+  --sz-body:  clamp(14px, 1.1vw, 16px);
+  --sz-small: clamp(11px, .9vw, 13px);
+  --sz-mono:  clamp(9px,  .75vw, 11px);
+  /* Content width */
+  --max:     1400px;
+  --prose:   68ch;
+}
+
+/* ── RESET ──────────────────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--red); color: #fff; }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-thumb { background: var(--rule2); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── NAV ────────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 72px);
+  transition: background .35s, border-color .35s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(12,11,9,.94);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border-color: var(--rule);
+}
+.nav-id {
+  font-family: var(--display); font-size: 17px; font-style: italic;
+  color: var(--ink); text-decoration: none; letter-spacing: .2px;
+}
+.nav-links {
+  display: flex; gap: clamp(20px, 3vw, 40px); list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-brief {
+  font-family: var(--mono); font-size: var(--sz-mono); font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #fff; background: var(--red);
+  padding: 9px 22px; text-decoration: none;
+  transition: opacity .18s; white-space: nowrap;
+}
+.nav-brief:hover { opacity: .88; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ── LAYOUT UTILITY ─────────────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 72px);
+}
+/* Prose — constrained reading width, left-aligned */
+.prose {
+  max-width: var(--prose);
+}
+/* Full bleed instrument — breaks out of prose constraint */
+.instrument {
+  width: 100%;
+}
+
+/* ── SECTIONS ───────────────────────────────────────────────────────────── */
+.section {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-top: 1px solid var(--rule);
+}
+.section:first-of-type { border-top: none; }
+
+/* ── EYEBROW ────────────────────────────────────────────────────────────── */
+.eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--faint); letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+.eyebrow::before {
+  content: ''; width: 24px; height: 1px;
+  background: var(--red); flex-shrink: 0;
+}
+
+/* ── DISPLAY HEADINGS ───────────────────────────────────────────────────── */
+.h-display {
+  font-family: var(--display);
+  font-size: var(--sz-h1);
+  font-weight: 400; font-style: italic;
+  line-height: 1.02; letter-spacing: -.5px;
+  color: var(--ink);
+}
+.h-display b { font-style: normal; font-weight: 400; }
+
+.h-section {
+  font-family: var(--display);
+  font-size: var(--sz-h2);
+  font-weight: 400; font-style: italic;
+  line-height: 1.04; letter-spacing: -.3px;
+  color: var(--ink);
+  margin-bottom: var(--space-xs);
+}
+.h-section b { font-style: normal; }
+
+/* ── BODY TEXT ──────────────────────────────────────────────────────────── */
+.body-text {
+  font-size: var(--sz-body); color: var(--dim);
+  font-weight: 300; line-height: 1.85;
+  max-width: var(--prose);
+}
+.body-text b { color: var(--ink); font-weight: 500; }
+.body-text + .body-text { margin-top: 1.2em; }
+
+/* ── REVEAL ANIMATION ───────────────────────────────────────────────────── */
+.rv {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.rv.in { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: .08s; }
+.rv.d2 { transition-delay: .16s; }
+.rv.d3 { transition-delay: .24s; }
+.rv.d4 { transition-delay: .32s; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HERO — single italic sentence at maximum scale
+   Full viewport. One sentence. Four numbers. Nothing else.
+══════════════════════════════════════════════════════════════════════════ */
+#hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(100px, 12vw, 160px) clamp(24px, 5vw, 72px) clamp(48px, 6vw, 72px);
+  max-width: var(--max); margin: 0 auto;
+}
+.hero-claim {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+}
+.hero-h {
+  font-family: var(--display);
+  font-size: var(--sz-hero);
+  font-weight: 400; font-style: italic;
+  line-height: .96; letter-spacing: -3px;
+  color: var(--ink);
+  margin-bottom: clamp(24px, 3vw, 40px);
+  /* Subtle gradient to add depth */
+  background: linear-gradient(160deg, var(--ink) 0%, rgba(242,237,230,.75) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: var(--sz-body); color: var(--dim); font-weight: 300;
+  max-width: 560px; line-height: 1.8; margin-bottom: clamp(32px, 4vw, 48px);
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: var(--sz-mono);
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--rule2); padding-bottom: 3px;
+  transition: border-color .2s; width: fit-content;
+}
+.hero-cta:hover { border-color: var(--ink); }
+.hero-cta-arrow { transition: transform .2s; }
+.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+/* Hero stat strip — 4 instruments */
+.hero-stats {
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(28px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.hs {
+  padding-right: clamp(20px, 3vw, 36px);
+  border-right: 1px solid var(--rule);
+}
+.hs:last-child { border-right: none; padding-right: 0; }
+.hs + .hs { padding-left: clamp(20px, 3vw, 36px); }
+.hs-n {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.8vw, 52px);
+  font-weight: 400; line-height: .9; letter-spacing: -1px;
+  color: var(--ink); display: block; margin-bottom: 8px;
+}
+.hs-n sup { font-size: .38em; color: var(--red); vertical-align: super; }
+.hs-l { font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.4; }
+.hs-d { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); display: block; margin-top: 4px; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   NUMBERS IN PERSPECTIVE
+   Three statements. Maximum isolation. Each earns its own breath.
+══════════════════════════════════════════════════════════════════════════ */
+.persp-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  margin-top: var(--space-md);
+}
+.pt-cell {
+  padding: clamp(40px, 5vw, 64px) clamp(28px, 3.5vw, 48px);
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.pt-cell:last-child { border-right: none; }
+/* Ghost section number */
+.pt-ghost {
+  position: absolute; top: 16px; right: 20px;
+  font-family: var(--display); font-size: 100px; font-weight: 400;
+  color: rgba(242,237,230,.04); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.pt-tag {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  letter-spacing: 2px; text-transform: uppercase; display: block;
+  margin-bottom: 20px;
+}
+.pt-n {
+  font-family: var(--display);
+  font-size: clamp(64px, 8vw, 108px);
+  font-weight: 400; font-style: italic; letter-spacing: -3px; line-height: .88;
+  color: var(--ink); display: block; margin-bottom: 16px;
+}
+.pt-n sub { font-size: .32em; letter-spacing: 0; color: var(--dim); vertical-align: sub; }
+.pt-claim {
+  font-size: var(--sz-small); color: var(--dim); font-weight: 300;
+  line-height: 1.75; max-width: 30ch;
+}
+.pt-claim b { color: var(--ink); font-weight: 500; }
+
+/* Domain rarity — horizontal bars */
+.domain-art {
+  margin-top: var(--space-md);
+}
+.da-row {
+  display: grid;
+  grid-template-columns: clamp(170px, 22vw, 260px) 1fr clamp(60px, 7vw, 84px);
+  gap: clamp(16px, 2.5vw, 32px);
+  align-items: baseline;
+  padding: clamp(13px, 1.6vw, 18px) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.da-row:first-child { border-top: 1px solid var(--rule); }
+.da-label {
+  font-family: var(--display); font-size: clamp(13px, 1.3vw, 16px);
+  font-style: italic; color: var(--ink); letter-spacing: -.2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.da-track {
+  height: 1px; background: var(--rule);
+  position: relative; align-self: center;
+}
+.da-fill {
+  height: 1px; position: absolute; top: 0; left: 0;
+  background: var(--ink); opacity: .55;
+  transition: width 1.6s cubic-bezier(.16,1,.3,1);
+}
+.da-fill::after {
+  content: ''; position: absolute; right: -1px; top: -2.5px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--ink); opacity: 0;
+  transition: opacity 1.6s cubic-bezier(.16,1,.3,1) .3s;
+}
+.da-fill.lit::after { opacity: .85; }
+.da-val {
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--faint); text-align: right; letter-spacing: .5px;
+}
+
+/* ── GOVERNANCE / KNOWLEDGE TRANSFER DATA-ART ──────────────────────────── */
+.gov-art { margin-top: var(--space-md); }
+.gov-head {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px;
+}
+.ga-row {
+  display: grid;
+  grid-template-columns: clamp(110px, 16vw, 160px) 1fr clamp(110px, 16vw, 170px);
+  gap: clamp(16px, 2.5vw, 32px);
+  align-items: baseline;
+  padding: clamp(11px, 1.4vw, 15px) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ga-row:first-of-type { border-top: 1px solid var(--rule); }
+.ga-label {
+  font-family: var(--display); font-size: clamp(13px, 1.3vw, 16px);
+  font-style: italic; color: var(--ink); letter-spacing: -.2px;
+}
+.ga-track { height: 1px; background: var(--rule); position: relative; align-self: center; }
+.ga-fill {
+  height: 1px; position: absolute; top: 0; left: 0;
+  background: var(--ink); opacity: .55;
+  transition: width 1.6s cubic-bezier(.16,1,.3,1);
+}
+.ga-fill.gov { background: var(--red); opacity: .7; }
+.ga-val {
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--faint); text-align: right; letter-spacing: .5px;
+}
+.lead-quote {
+  margin-top: 32px; padding: 28px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.lead-quote p {
+  font-family: var(--display); font-size: clamp(17px, 2vw, 23px);
+  font-style: italic; font-weight: 400; line-height: 1.4;
+  color: var(--ink); max-width: 60ch;
+}
+.lead-quote p b { font-weight: 400; color: var(--red); font-style: normal; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   EKG — Career production timeline
+   The signature data instrument. 17 years as a single waveform.
+══════════════════════════════════════════════════════════════════════════ */
+.ekg-wrap {
+  margin-top: var(--space-md);
+  padding-top: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--rule);
+}
+.ekg-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+.ekg-title {
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--faint); letter-spacing: 2px; text-transform: uppercase;
+}
+.ekg-peak {
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--red); letter-spacing: 1px;
+}
+.ekg-svg-wrap { position: relative; }
+#ekgSvg { width: 100%; display: block; cursor: crosshair; }
+.ekg-needle {
+  position: absolute; top: 0; bottom: 24px;
+  width: 1px; background: var(--rule2);
+  pointer-events: none; opacity: 0; transition: opacity .1s;
+}
+.ekg-tooltip {
+  position: absolute; bottom: calc(100% - 16px);
+  transform: translateX(-50%);
+  background: var(--bg2); border: 1px solid var(--rule2);
+  font-family: var(--mono); font-size: var(--sz-mono);
+  color: var(--ink); padding: 5px 12px; white-space: nowrap;
+  pointer-events: none; opacity: 0; transition: opacity .1s;
+}
+.ekg-labels {
+  display: flex; justify-content: space-between;
+  padding-top: 8px; border-top: 1px solid var(--rule);
+  margin-top: 4px;
+}
+.ekg-yr {
+  font-family: var(--mono); font-size: calc(var(--sz-mono) - 1px);
+  color: var(--faint);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CAPACITY CLOCK — Circular SVG instrument
+   Three concentric arcs: baseline / target / actual
+══════════════════════════════════════════════════════════════════════════ */
+.clock-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  margin-top: var(--space-md);
+}
+.clock-svg-wrap { flex-shrink: 0; width: clamp(200px, 24vw, 320px); }
+#clockSvg { width: 100%; height: auto; display: block; }
+.clock-legend { display: flex; flex-direction: column; gap: 28px; }
+.cl-item {}
+.cl-tag {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px;
+}
+.cl-n {
+  font-family: var(--display); font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400; letter-spacing: -1px; color: var(--ink);
+  line-height: .9; margin-bottom: 6px;
+}
+.cl-desc {
+  font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.7;
+}
+.cl-desc b { color: var(--ink); font-weight: 500; }
+
+/* Capacity bar rows */
+.cap-rows { display: flex; flex-direction: column; gap: 18px; }
+.cap-row {
+  display: grid;
+  grid-template-columns: clamp(160px, 20vw, 240px) 1fr clamp(80px, 10vw, 110px);
+  gap: clamp(12px, 2vw, 24px); align-items: center;
+}
+.cr-l { font-family: var(--mono); font-size: var(--sz-mono); color: var(--dim); }
+.cr-t { height: 4px; background: rgba(242,237,230,.05); position: relative; }
+.cr-f { height: 100%; position: absolute; top: 0; left: 0; transition: width 1.3s cubic-bezier(.25,.46,.45,.94); }
+.cr-v { font-family: var(--mono); font-size: var(--sz-mono); color: var(--ink); text-align: right; }
+.cap-note {
+  margin-top: 28px; padding: 20px 24px;
+  border-left: 2px solid var(--rule2);
+  font-family: var(--mono); font-size: var(--sz-small);
+  color: var(--faint); line-height: 1.85;
+}
+.cap-note b { color: var(--dim); font-weight: 400; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   METRICS — six instruments in a clean grid
+══════════════════════════════════════════════════════════════════════════ */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  margin-top: var(--space-md);
+}
+.mg {
+  padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 30px);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background .2s;
+}
+.mg:hover { background: var(--bg2); }
+.mg:nth-child(3n) { border-right: none; }
+.mg:nth-last-child(-n+3) { border-bottom: none; }
+.mg-n {
+  font-family: var(--display);
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 400; letter-spacing: -1px; line-height: .92;
+  color: var(--ink); display: block; margin-bottom: 9px;
+}
+.mg-n sup { font-size: .38em; color: var(--red); vertical-align: super; }
+.mg-l { font-size: var(--sz-small); color: var(--ink); margin-bottom: 3px; }
+.mg-s { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CAPABILITY MATRIX — friction → resolution
+══════════════════════════════════════════════════════════════════════════ */
+.matrix { display: flex; flex-direction: column; margin-top: var(--space-md); }
+.mx {
+  display: grid;
+  grid-template-columns: clamp(220px, 28vw, 360px) 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  transition: background .18s;
+}
+.mx:last-child { border-bottom: 1px solid var(--rule); }
+.mx:hover { background: rgba(242,237,230,.015); }
+.mx-l {
+  padding: clamp(32px, 4vw, 48px) clamp(24px, 3vw, 40px) clamp(32px, 4vw, 48px) 0;
+  border-right: 1px solid var(--rule);
+}
+.mx-r {
+  padding: clamp(32px, 4vw, 48px) 0 clamp(32px, 4vw, 48px) clamp(24px, 3vw, 40px);
+}
+.mx-fr {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+}
+.mx-h {
+  font-family: var(--display);
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 400; font-style: italic;
+  color: var(--ink); line-height: 1.25;
+}
+.mx-cap-tag {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--dim);
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
+}
+.mx-body { font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.85; }
+.mx-body b { color: var(--ink); font-weight: 500; }
+.mx-proof {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--ink);
+  margin-top: 14px; display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PLATFORM AUTHORITY
+══════════════════════════════════════════════════════════════════════════ */
+.apple-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1px solid var(--rule);
+  margin-top: clamp(28px, 3vw, 40px);
+}
+.ap-cell {
+  padding: clamp(22px, 2.5vw, 32px) clamp(18px, 2vw, 26px);
+  border-right: 1px solid var(--rule); transition: background .2s;
+}
+.ap-cell:last-child { border-right: none; }
+.ap-cell:hover { background: var(--bg2); }
+.ap-code { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+.ap-name { font-family: var(--display); font-size: clamp(14px, 1.5vw, 17px); font-style: italic; color: var(--ink); margin-bottom: 6px; }
+.ap-n { font-family: var(--display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; letter-spacing: -1px; color: var(--ink); margin-bottom: 5px; }
+.ap-desc { font-size: calc(var(--sz-mono) + 1px); color: var(--faint); font-weight: 300; line-height: 1.6; }
+
+.lux-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1px solid var(--rule); border-top: none;
+}
+.lx {
+  padding: clamp(18px, 2vw, 26px) clamp(18px, 2vw, 26px);
+  border-right: 1px solid var(--rule); transition: background .2s;
+}
+.lx:last-child { border-right: none; }
+.lx:hover { background: var(--bg2); }
+.lx-brand { font-family: var(--display); font-size: clamp(15px, 1.6vw, 19px); font-style: italic; color: var(--ink); margin-bottom: 3px; }
+.lx-vol { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); margin-bottom: 5px; }
+.lx-desc { font-size: calc(var(--sz-mono) + 1px); color: var(--dim); font-weight: 300; line-height: 1.55; }
+
+.spec-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; border: 1px solid var(--rule); border-top: none;
+}
+.sp-cell { padding: clamp(18px, 2vw, 26px); border-right: 1px solid var(--rule); }
+.sp-cell:last-child { border-right: none; }
+.sp-tag { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.sp-name { font-family: var(--display); font-size: clamp(13px, 1.4vw, 16px); font-style: italic; color: var(--ink); margin-bottom: 5px; }
+.sp-body { font-size: calc(var(--sz-mono) + 1px); color: var(--dim); font-weight: 300; line-height: 1.6; }
+
+/* ── NOKIA UI/UX CONTEXT SCHOOL EXHIBIT ────────────────────────────────── */
+.nokia-exhibit {
+  display: grid;
+  grid-template-columns: 1fr clamp(200px, 24vw, 280px);
+  gap: clamp(28px, 4vw, 56px);
+  border: 1px solid var(--rule);
+  padding: clamp(24px, 3vw, 36px);
+  align-items: center;
+}
+.nx-left {}
+.nx-right {
+  display: flex; flex-direction: column; gap: clamp(16px, 2vw, 22px);
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(24px, 3vw, 36px);
+}
+.nx-stat { display: flex; flex-direction: column; gap: 3px; }
+.nx-n {
+  font-family: var(--display); font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 400; font-style: italic; color: var(--ink); letter-spacing: -.5px;
+}
+.nx-l {
+  font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint);
+  letter-spacing: .5px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ACCOUNT EXPLORER
+══════════════════════════════════════════════════════════════════════════ */
+.explorer {
+  display: grid;
+  grid-template-columns: clamp(180px, 20vw, 240px) 1fr;
+  border: 1px solid var(--rule);
+  min-height: 500px;
+  margin-top: var(--space-md);
+}
+.ex-list { border-right: 1px solid var(--rule); overflow-y: auto; scrollbar-width: none; }
+.ex-list::-webkit-scrollbar { display: none; }
+.ex-item {
+  padding: 13px clamp(14px, 1.8vw, 22px); border-bottom: 1px solid var(--rule);
+  cursor: pointer; position: relative; transition: background .15s;
+}
+.ex-item::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: var(--red); transform: scaleY(0);
+  transition: transform .2s cubic-bezier(.25,.46,.45,.94); transform-origin: top;
+}
+.ex-item.on::before { transform: scaleY(1); }
+.ex-item.on { background: var(--red-bg); }
+.ex-item:hover:not(.on) { background: var(--bg2); }
+.ei-n { font-size: var(--sz-small); font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.ei-f { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); }
+.ex-panel { padding: clamp(28px, 4vw, 48px) clamp(28px, 4vw, 52px); display: flex; flex-direction: column; }
+.ep-name { font-family: var(--display); font-size: clamp(24px, 3.2vw, 40px); font-style: italic; color: var(--ink); margin-bottom: 4px; letter-spacing: -.3px; }
+.ep-meta { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); margin-bottom: clamp(24px, 3vw, 36px); letter-spacing: .5px; }
+.ep-tracks { display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px); flex: 1; }
+.ep-th { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.ep-tn { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); letter-spacing: 1.5px; text-transform: uppercase; }
+.ep-tv { font-family: var(--display); font-size: clamp(16px, 2vw, 22px); font-weight: 400; letter-spacing: -.3px; }
+.ep-tp { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); margin-left: 6px; }
+.ep-rail { height: 1px; background: var(--rule2); }
+.ep-fill { height: 100%; transition: width .85s cubic-bezier(.25,.46,.45,.94); }
+.ep-fr { margin-top: clamp(20px, 3vw, 32px); padding-top: clamp(16px, 2.5vw, 24px); border-top: 1px solid var(--rule); }
+.ep-frl { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.ep-frn { font-family: var(--display); font-size: clamp(32px, 4.5vw, 56px); font-weight: 400; letter-spacing: -2px; color: var(--ink); line-height: .9; margin-bottom: 10px; }
+.ep-frn em { font-size: .32em; color: var(--dim); font-style: normal; margin-left: 8px; vertical-align: middle; }
+.ep-frr { height: 2px; background: var(--rule); margin-bottom: 7px; }
+.ep-frf { height: 100%; background: var(--red); transition: width .9s cubic-bezier(.25,.46,.45,.94); }
+.ep-frc { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CAREER TIMELINE
+══════════════════════════════════════════════════════════════════════════ */
+.tl { margin-top: var(--space-md); display: flex; flex-direction: column; }
+.tl-item {
+  display: grid;
+  grid-template-columns: clamp(160px, 20vw, 240px) 1fr;
+  gap: 0; padding: clamp(28px, 4vw, 48px) 0;
+  border-top: 1px solid var(--rule);
+}
+.tl-item:last-child { border-bottom: 1px solid var(--rule); }
+.tl-when { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); padding-right: clamp(20px, 3vw, 36px); line-height: 1.7; }
+.tl-role { font-family: var(--display); font-size: clamp(16px, 2vw, 22px); font-style: italic; color: var(--ink); margin-bottom: 3px; }
+.tl-co { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); margin-bottom: 16px; }
+.tl-sub { font-family: var(--mono); font-size: var(--sz-mono); color: var(--dim); letter-spacing: 2px; text-transform: uppercase; display: block; margin: 18px 0 9px; padding-bottom: 7px; border-bottom: 1px solid var(--rule); }
+.bul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.bul li { display: grid; grid-template-columns: 14px 1fr; font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.8; }
+.bul li::before { content: '—'; font-family: var(--mono); font-size: 10px; color: var(--faint); margin-top: 2px; }
+.bul b { color: var(--ink); font-weight: 500; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LOCMASTERS STUDIO
+══════════════════════════════════════════════════════════════════════════ */
+.lm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+  margin-top: var(--space-md);
+}
+.lm-wm {
+  font-family: var(--display);
+  font-size: clamp(44px, 6vw, 84px);
+  font-weight: 400; font-style: italic; letter-spacing: -2.5px; line-height: .88;
+  color: var(--ink); margin-bottom: 7px;
+}
+.lm-tm { font-size: .3em; vertical-align: super; letter-spacing: 0; color: var(--red); font-style: normal; }
+.lm-badge { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+.lm-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); animation: blink 2.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+.lm-badge-txt { font-family: var(--mono); font-size: var(--sz-mono); color: var(--dim); letter-spacing: 2px; text-transform: uppercase; }
+.lm-desc { font-size: var(--sz-body); color: var(--dim); font-weight: 300; line-height: 1.9; margin-bottom: 24px; }
+.lm-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+.lst { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); border: 1px solid var(--rule); padding: 4px 10px; }
+/* Terminal */
+.terminal { background: #05050A; border: 1px solid rgba(196,30,58,.15); overflow: hidden; }
+.t-bar { background: rgba(196,30,58,.04); border-bottom: 1px solid rgba(242,237,230,.06); padding: 10px 16px; display: flex; align-items: center; gap: 7px; }
+.t-dot { width: 9px; height: 9px; border-radius: 50%; }
+.t-ttl { font-family: var(--mono); font-size: calc(var(--sz-mono) - 1px); color: rgba(242,237,230,.14); margin-left: auto; }
+.t-body { padding: 20px; font-family: var(--mono); font-size: var(--sz-small); line-height: 2.0; }
+.tl-r { display: flex; gap: 8px; align-items: baseline; }
+.tp { color: #5A5AEE; flex-shrink: 0; width: 14px; }
+.tk { color: rgba(242,237,230,.28); } .tv { color: #50A8DC; }
+.tok { color: #28BE68; } .tw { color: #E09030; } .te { color: #D84040; }
+.ts { border-top: 1px solid rgba(242,237,230,.07); margin: 8px 0; }
+.tsc { color: #7878EE; font-weight: 400; }
+.lm-eng-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; border: 1px solid var(--rule); margin-top: clamp(36px, 5vw, 56px); }
+.lm-eng { padding: clamp(18px, 2.5vw, 28px) clamp(16px, 2vw, 24px); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.lm-eng:nth-child(2n) { border-right: none; }
+.lm-eng:nth-last-child(-n+2) { border-bottom: none; }
+.le-c { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+.le-h { font-family: var(--display); font-size: clamp(14px, 1.6vw, 17px); font-style: italic; color: var(--ink); margin-bottom: 6px; }
+.le-b { font-size: calc(var(--sz-mono) + 1px); color: var(--dim); font-weight: 300; line-height: 1.7; }
+.ss { margin-top: clamp(32px, 5vw, 52px); padding: clamp(24px, 3vw, 36px) clamp(28px, 3.5vw, 44px); border-left: 2px solid var(--red); background: var(--red-bg); display: grid; grid-template-columns: clamp(90px, 12vw, 130px) 1fr; gap: clamp(20px, 3vw, 36px); align-items: center; }
+.ss-q { font-family: var(--display); font-size: clamp(15px, 1.8vw, 19px); font-style: italic; color: var(--red); line-height: 1.4; }
+.ss-t { font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.85; }
+.ss-t b { color: var(--ink); font-weight: 500; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ENGAGEMENT / CONTACT
+══════════════════════════════════════════════════════════════════════════ */
+.eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 7vw, 96px); }
+.eng-h { font-family: var(--display); font-size: clamp(38px, 5.5vw, 72px); font-weight: 400; font-style: italic; letter-spacing: -1px; line-height: .92; color: var(--ink); margin-bottom: 16px; }
+.eng-sub { font-size: var(--sz-body); color: var(--dim); font-weight: 300; line-height: 1.85; margin-bottom: 32px; max-width: 48ch; }
+.c-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-top: 1px solid var(--rule); }
+.c-row:last-child { border-bottom: 1px solid var(--rule); }
+.c-l { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); letter-spacing: 1.5px; text-transform: uppercase; }
+.c-v { font-size: var(--sz-small); color: var(--dim); text-decoration: none; transition: color .18s; }
+.c-v:hover { color: var(--ink); }
+.brief-box { border: 1px solid var(--rule2); padding: clamp(24px, 3vw, 36px); margin-bottom: 18px; }
+.bb-top { font-family: var(--mono); font-size: var(--sz-mono); color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.bb-body { font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.85; }
+.bb-body b { color: var(--ink); font-weight: 500; }
+.eng-types { border: 1px solid var(--rule); margin-bottom: 18px; }
+.et-head { padding: 12px 18px; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: var(--sz-mono); color: var(--dim); letter-spacing: 1px; }
+.et-row { padding: 11px 18px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; }
+.et-row:last-child { border-bottom: none; }
+.et-name { font-size: var(--sz-small); color: var(--dim); font-weight: 300; }
+.et-type { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); }
+.btn-brief { display: inline-block; font-family: var(--mono); font-size: var(--sz-mono); font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #fff; background: var(--red); padding: 13px 28px; text-decoration: none; transition: opacity .18s; }
+.btn-brief:hover { opacity: .88; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TOOLS
+══════════════════════════════════════════════════════════════════════════ */
+.tool-list { display: flex; flex-direction: column; margin-top: var(--space-md); }
+.tool-row { display: grid; grid-template-columns: clamp(160px, 20vw, 220px) 1fr; gap: 0; padding: 13px 0; border-top: 1px solid var(--rule); }
+.tool-row:last-child { border-bottom: 1px solid var(--rule); }
+.tc { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); letter-spacing: 1.5px; text-transform: uppercase; padding-right: 20px; }
+.tv-t { font-size: var(--sz-small); color: var(--dim); font-weight: 300; line-height: 1.65; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clamp(24px, 5vw, 72px); max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ft-l { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); }
+.ft-r { display: flex; gap: 18px; }
+.ft-r span { font-family: var(--mono); font-size: var(--sz-mono); color: var(--faint); letter-spacing: 1px; text-transform: uppercase; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .persp-trio { grid-template-columns: 1fr; }
+  .pt-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+  .pt-cell:last-child { border-bottom: none; }
+  .clock-wrap { grid-template-columns: 1fr; }
+  .clock-svg-wrap { width: clamp(160px, 50vw, 240px); margin: 0 auto; }
+  .lm-grid, .eng-grid { grid-template-columns: 1fr; gap: 40px; }
+  .apple-grid, .lux-strip, .spec-row { grid-template-columns: 1fr 1fr; }
+  .nokia-exhibit { grid-template-columns: 1fr; }
+  .nx-right { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 20px; flex-direction: row; gap: 28px; flex-wrap: wrap; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .mg:nth-child(3n) { border-right: 1px solid var(--rule); }
+  .mg:nth-child(2n) { border-right: none; }
+  .mg:nth-last-child(-n+2) { border-bottom: none; }
+  .mg:nth-last-child(3) { border-bottom: 1px solid var(--rule); }
+  .explorer { grid-template-columns: 1fr; }
+  .ex-list { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--rule); max-height: 200px; overflow-y: auto; }
+  .mx { grid-template-columns: 1fr; }
+  .mx-l { border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; }
+  .tl-item { grid-template-columns: 1fr; gap: 8px; }
+  .da-row { grid-template-columns: clamp(110px, 26vw, 170px) 1fr clamp(50px, 11vw, 70px); }
+  .ga-row { grid-template-columns: clamp(90px, 24vw, 130px) 1fr clamp(90px, 24vw, 140px); }
+  .cap-row { grid-template-columns: clamp(120px, 28vw, 180px) 1fr clamp(60px, 14vw, 90px); }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hs:nth-child(2) { border-right: none; }
+  .hs:nth-child(n+3) { margin-top: 24px; }
+  .lm-eng-grid { grid-template-columns: 1fr; }
+  .ss { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .apple-grid, .lux-strip, .spec-row { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .mg:nth-child(2n) { border-right: 1px solid var(--rule); }
+  .mg:nth-child(n) { border-right: none; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .hs { border-right: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-id">Sayed Elattar</a>
+  <ul class="nav-links">
+    <li><a href="#perspective">Perspective</a></li>
+    <li><a href="#record">Record</a></li>
+    <li><a href="#matrix">Capability</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#contact">Collaborate</a></li>
+  </ul>
+  <a href="mailto:sayyed.elattar@gmail.com" class="nav-brief">Let&#x2019;s Collaborate &#x2192;</a>
+</nav>
+
+<!-- ═══════════════════════════════
+     HERO
+═══════════════════════════════ -->
+<header>
+<div id="hero">
+  <div class="hero-claim">
+    <div class="rv">
+      <div class="eyebrow">Arabic Linguist &#x00B7; LQA Lead &#x00B7; AI Quality Specialist &#x00B7; MTPE Expert &#x00B7; UI/UX Context Tester &#x00B7; Tech Mentor &amp; CAT Tool Expert &#x00B7; Since 2008</div>
+      <h1 class="hero-h">Every word that<br>fails in Arabic<br>is a market<br><i>someone else<br>is winning.</i></h1>
+      <p class="hero-sub">Seventeen years of Arabic localisation built on one principle: quality that survives audit, every time. 17,882 tasks, 7,454 verified LQA hours, and an unbroken production record &#x2014; so the only thing your Arabic-speaking customers notice is that the product was made for them.</p>
+      <a href="#perspective" class="hero-cta">See the evidence <span class="hero-cta-arrow">&#x2192;</span></a>
+    </div>
+  </div>
+  <div class="hero-stats rv d3">
+    <div class="hs">
+      <span class="hs-n">11.1<sup>M+</sup></span>
+      <div class="hs-l">Equivalent translation words</div>
+      <span class="hs-d">Formula-weighted &#x00B7; 2010&#x2013;2026 &#x00B7; ongoing</span>
+    </div>
+    <div class="hs">
+      <span class="hs-n">17,882</span>
+      <div class="hs-l">Completed enterprise tasks</div>
+      <span class="hs-d">Translation &#x00B7; LQA &#x00B7; MTPE &#x00B7; Proofing</span>
+    </div>
+    <div class="hs">
+      <span class="hs-n">7,454<sup>hrs</sup></span>
+      <div class="hs-l">Verified LQA hours</div>
+      <span class="hs-d">MQM / TAUS DQF &#x00B7; audited</span>
+    </div>
+    <div class="hs">
+      <span class="hs-n">106</span>
+      <div class="hs-l">Unique clients &#x00B7; single year</div>
+      <span class="hs-d">2015 peak &#x00B7; 40+ maintained</span>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- ═══════════════════════════════
+     THE NUMBERS IN PERSPECTIVE
+═══════════════════════════════ -->
+<div class="section" id="perspective">
+<div class="wrap">
+  <div class="eyebrow rv">01 / The Numbers in Perspective</div>
+  <h2 class="h-section rv d1">What 17,882 tasks<br><b>actually means.</b></h2>
+  <p class="body-text rv d2">Raw numbers without context are statistics. These three instruments translate the career record into the language a procurement director already thinks in.</p>
+
+  <div class="persp-trio rv d2">
+    <div class="pt-cell">
+      <span class="pt-ghost">8.7</span>
+      <span class="pt-tag">Scale Equivalence</span>
+      <span class="pt-n">8.7<sub>yrs</sub></span>
+      <p class="pt-claim">of a full-time translator working <b>every single day</b> &#x2014; delivered by one practitioner alongside 7,454 hours of LQA auditing, 690,000 MTPE words, and style guide creation for 18 enterprise clients. This is not freelance output. This is institutional scale.</p>
+    </div>
+    <div class="pt-cell">
+      <span class="pt-ghost">10</span>
+      <span class="pt-tag">Domain Rarity Index</span>
+      <span class="pt-n">10<sub>domains</sub></span>
+      <p class="pt-claim">maintained <b>simultaneously</b> with verified task-count evidence in each. Most Arabic translators specialise in 1&#x2013;2 domains. The probability of another individual holding enterprise-grade history in all ten is effectively zero.</p>
+    </div>
+    <div class="pt-cell">
+      <span class="pt-ghost">17</span>
+      <span class="pt-tag">Continuity Signal</span>
+      <span class="pt-n">17<sub>yrs</sub></span>
+      <p class="pt-claim">consecutive active years at one ISO 27001-certified LSP inside the Welocalize supply chain &#x2014; zero gaps. Enterprise localisation teams do <b>not renew vendor relationships for 17 years</b> unless the quality record is perfect.</p>
+    </div>
+  </div>
+
+  <!-- Domain rarity bars -->
+  <div class="domain-art rv d3">
+    <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:22px;">Domain Breadth &#x2014; Relative Task Volume</div>
+    <div class="da-row"><span class="da-label">Automotive / Technical</span><div class="da-track"><div class="da-fill" data-w="100" style="width:0"></div></div><span class="da-val">2,300+</span></div>
+    <div class="da-row"><span class="da-label">Software / UI / FinTech</span><div class="da-track"><div class="da-fill" data-w="92" style="width:0"></div></div><span class="da-val">900+</span></div>
+    <div class="da-row"><span class="da-label">Hardware / Electronics</span><div class="da-track"><div class="da-fill" data-w="78" style="width:0"></div></div><span class="da-val">750+</span></div>
+    <div class="da-row"><span class="da-label">E-Learning / Training</span><div class="da-track"><div class="da-fill" data-w="55" style="width:0"></div></div><span class="da-val">520+</span></div>
+    <div class="da-row"><span class="da-label">Luxury / Marketing / Brand</span><div class="da-track"><div class="da-fill" data-w="48" style="width:0"></div></div><span class="da-val">460+</span></div>
+    <div class="da-row"><span class="da-label">HSE / Industrial / Safety</span><div class="da-track"><div class="da-fill" data-w="35" style="width:0"></div></div><span class="da-val">340+</span></div>
+    <div class="da-row"><span class="da-label">Medical / Clinical / eCOA</span><div class="da-track"><div class="da-fill" data-w="22" style="width:0"></div></div><span class="da-val">210+</span></div>
+    <div class="da-row"><span class="da-label">Gaming / Interactive</span><div class="da-track"><div class="da-fill" data-w="18" style="width:0"></div></div><span class="da-val">170+</span></div>
+    <div class="da-row"><span class="da-label">Cybersecurity / Enterprise IT</span><div class="da-track"><div class="da-fill" data-w="14" style="width:0"></div></div><span class="da-val">130+</span></div>
+    <div class="da-row"><span class="da-label">Legal / Regulatory</span><div class="da-track"><div class="da-fill" data-w="10" style="width:0"></div></div><span class="da-val">95+</span></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     PRODUCTION RECORD
+═══════════════════════════════ -->
+<div class="section" id="record">
+<div class="wrap">
+  <div class="eyebrow rv">02 / Production Record</div>
+  <h2 class="h-section rv d1">Sixteen years.<br><b>One ledger.</b></h2>
+  <p class="body-text rv d2">Verified metrics from project records spanning April 2010 &#x2013; June 2026. Data is current, not closed &#x2014; 17 consecutive active years, zero gaps.</p>
+
+  <!-- Capacity Clock -->
+  <div class="clock-wrap rv d2">
+    <div class="clock-svg-wrap">
+      <svg id="clockSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div class="clock-legend">
+      <div class="cl-item">
+        <span class="cl-tag">Career Average / Year</span>
+        <div class="cl-n">654K</div>
+        <p class="cl-desc"><b>130.9% of single-service baseline.</b> Multi-service stacking (translation + revision + LQA + MTPE concurrently) produces above-baseline output without overproduction. The 70% productivity target (350K eq.w/year) is exceeded in every year on record.</p>
+      </div>
+      <div class="cl-item">
+        <span class="cl-tag">Capacity Logic Model</span>
+        <div class="cap-rows">
+          <div class="cap-row"><span class="cr-l">Theoretical max / yr</span><div class="cr-t"><div class="cr-f" data-w="100" style="width:0;background:rgba(242,237,230,.18)"></div></div><span class="cr-v">500K</span></div>
+          <div class="cap-row"><span class="cr-l">Career avg / yr</span><div class="cr-t"><div class="cr-f" data-w="100" style="width:0;background:var(--at)"></div></div><span class="cr-v">654K</span></div>
+          <div class="cap-row"><span class="cr-l">Peak year 2019</span><div class="cr-t"><div class="cr-f" data-w="100" style="width:0;background:var(--red)"></div></div><span class="cr-v">994K</span></div>
+          <div class="cap-row"><span class="cr-l">70% target floor</span><div class="cr-t"><div class="cr-f" data-w="53" style="width:0;background:rgba(242,237,230,.22)"></div></div><span class="cr-v">350K</span></div>
+        </div>
+        <p class="cap-note"><b>Basis:</b> 250 working days/year &#x00D7; 2,000 w/day = 500K baseline. Career flat-rate 11,115,445 &#x00F7; 17 years = <b>654,379 eq.w/year = 130.9% of baseline.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EKG Timeline -->
+  <div class="ekg-wrap instrument rv d3">
+    <div class="ekg-head">
+      <span class="ekg-title">Annual flat-rate equivalence &#x00B7; 2010&#x2013;2026</span>
+      <span class="ekg-peak">&#x2191; 2019 peak &#x00B7; 994,032 eq.w &#x00B7; 198.8% of baseline</span>
+    </div>
+    <div class="ekg-svg-wrap">
+      <svg id="ekgSvg" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none"></svg>
+      <div class="ekg-needle" id="ekgNeedle"></div>
+      <div class="ekg-tooltip" id="ekgTip"></div>
+    </div>
+    <div class="ekg-labels" id="ekgLabels"></div>
+  </div>
+
+  <!-- Metrics grid -->
+  <div class="metrics-grid instrument rv d3">
+    <div class="mg"><span class="mg-n">12.87<sup>M</sup></span><div class="mg-l">Raw words processed</div><div class="mg-s">All service types</div></div>
+    <div class="mg"><span class="mg-n">5.63<sup>M</sup></span><div class="mg-l">Words translated</div><div class="mg-s">T-tasks &#x00B7; 2,000 w/day sustained</div></div>
+    <div class="mg"><span class="mg-n">6.55<sup>M</sup></span><div class="mg-l">Words reviewed</div><div class="mg-s">R-tasks &#x00B7; 4,000 w/day sustained</div></div>
+    <div class="mg"><span class="mg-n">690<sup>K</sup></span><div class="mg-l">MTPE words</div><div class="mg-s">AI-assisted post-editing</div></div>
+    <div class="mg"><span class="mg-n">7,454<sup>hrs</sup></span><div class="mg-l">Verified LQA hours</div><div class="mg-s">MQM / TAUS DQF &#x00B7; audited</div></div>
+    <div class="mg"><span class="mg-n">17<sup>yrs</sup></span><div class="mg-l">Consecutive active years</div><div class="mg-s">Zero gaps &#x00B7; ISO 27001 &#x00B7; GDPR</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     CAPABILITY MATRIX
+═══════════════════════════════ -->
+<div class="section" id="matrix">
+<div class="wrap">
+  <div class="eyebrow rv">03 / Capability Matrix</div>
+  <h2 class="h-section rv d1">Enterprise friction.<br><b>Resolved.</b></h2>
+  <p class="body-text rv d2">Seven categories of Arabic localisation failure. This practice was built to eliminate each one.</p>
+  <div class="matrix rv d2">
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 01 / Quality Arbitration</div><div class="mx-h">Vendor disputes with no neutral resolution. LQA scores that cannot be defended to clients.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">3rd Party Arbitration &amp; LQA</div>
+        <p class="mx-body">Independent linguistic auditor using <b>MQM and TAUS DQF frameworks</b> &#x2014; structured error typology, configurable severity weights, documented corrective action plans. 7,454 verified hours. <b>25% documented error rate reduction</b> across enterprise accounts. ISO 27001-certified operating environment.</p>
+        <span class="mx-proof">7,454 hrs &#x00B7; MQM / TAUS DQF &#x00B7; 25% error reduction</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 02 / RTL Engineering</div><div class="mx-h">Arabic UI that breaks on device. RTL layout failures discovered post-integration.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">RTL/BiDi Context Testing</div>
+        <p class="mx-body">Physical device testing on <b>Samsung Galaxy S3/S4</b> (637 tasks). Legacy platform QA on <b>Nokia</b> (19 tasks) and <b>Alcatel</b> (133 tasks). <b>GuideSim PACK &amp; GO</b> automotive simulator validation (Scania &#x2014; High/Standard screen profiles, Text ID tracking, XTM push-back). Canon OSD hardware interface validation.</p>
+        <span class="mx-proof">769 device-context tasks &#x00B7; GuideSim PACK &amp; GO &#x00B7; 3 hardware platforms</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 03 / Linguistic Architecture</div><div class="mx-h">No Arabic style guide. Inconsistent terminology across vendors. Glossaries that live in one person&#x2019;s head.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">Style Guide &amp; Terminology Governance</div>
+        <p class="mx-body">Arabic style guides and TBX glossaries delivered from scratch for <b>18 enterprise clients across 11 years</b> (~78 hrs): Renault, Wizz Air, Amazon AWS, Peakon, WorkSimpli, EasyBrain, telecom client (424,000-word glossary corpus), Scania (monthly lexicon 2022&#x2013;2026), Apple/Beats Guidelines, Microsoft Digital Stores. <b>Gender-neutral microcopy</b> methodology using explicit verbal nouns and neutral plural constructions.</p>
+        <span class="mx-proof">18 clients &#x00B7; 424K-word corpus &#x00B7; TBX export &#x00B7; TMS-integrated</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 04 / AI Output Quality</div><div class="mx-h">MT and GenAI Arabic output that passes automated QA but fails human review.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">MTPE &amp; AI Workflow Auditing</div>
+        <p class="mx-body"><b>690,000 words</b> of MT and generative AI Arabic output audited across Apple Care, John Deere, Caterpillar, Coursera, and enterprise accounts. Evaluates fluency, terminological precision, and cultural accuracy at segment level. Advanced prompt engineering and agentic AI protocols. <b>RWS Group Certified &#x2014; Linguistic Prompt Design.</b></p>
+        <span class="mx-proof">690K MTPE words &#x00B7; RWS Group Certified &#x00B7; LocMasters&#x2122; founder</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 05 / FinTech Compliance</div><div class="mx-h">Payment UI that fails Arabic regulatory review. Multi-currency display logic that confuses MENA users.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">FinTech &amp; Transactional Microcopy</div>
+        <p class="mx-body"><b>PayPal</b> (27 tasks / 67,986 words): cross-border transaction microcopy, digital wallet UI, payment confirmation flows, multi-currency display, financial error states. <b>Payoneer</b> (3 tasks / 2,001 words): B2B payment platform, account verification. <b>Apple</b> (7,289 tasks / 2.18M words): App Store billing, in-app purchase, subscription management, pricing strings across 40+ regional currency pairs. <b>Amazon</b> (138 tasks / 183,147 words): digital checkout for MENA.</p>
+        <span class="mx-proof">PayPal + Payoneer 30 tasks &#x00B7; Apple billing 2.18M words</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 06 / Premium Register</div><div class="mx-h">Arabic luxury copy that reads as translated rather than authored. Brand voice that does not survive market crossing.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">Premium Brand Voice &amp; Transcreation</div>
+        <p class="mx-body"><b>Porsche</b> (911 GT3 RS Chronograph brochure &#x2014; automotive/timepiece crossover), <b>Maserati</b> (58 tasks / 157,980 words), <b>Lamborghini</b> (43,145 words including Pagani joint brochure), <b>Harley-Davidson</b> (285 tasks / 281,030 words). <b>Belkin</b> (442 tasks / 58,302 words across 10 years, 2016&#x2013;2026): consumer tech marketing and product packaging copy &#x2014; short-form, conversion-focused Arabic for a premium lifestyle electronics brand, sustained across product launches, campaign copy, and packaging refreshes. Also: Apple, Microsoft, Canva, Logitech, AMD, HP, IKEA, Twitter/X, Indeed, Alibaba for MENA brand voice adaptation.</p>
+        <span class="mx-proof">Porsche &#x00B7; Maserati &#x00B7; Lamborghini &#x00B7; Harley-Davidson &#x00B7; Belkin &#x00B7; 5 premium &amp; lifestyle marques</span></div>
+    </div>
+
+    <div class="mx">
+      <div class="mx-l"><div class="mx-fr">Friction 07 / Strategic Advisory</div><div class="mx-h">No internal MENA linguistic authority to advise product and engineering upstream.</div></div>
+      <div class="mx-r"><div class="mx-cap-tag">Strategic Localisation Consulting</div>
+        <p class="mx-body">Sixteen years at the intersection of Arabic linguistic standards, enterprise QA frameworks, and digital product delivery generates a perspective that no translation service can offer: <b>the ability to advise upstream.</b> Consulting engagements cover: Arabic i18n audit, MSA register strategy for new market entry, Arabic UI/UX review for product teams, LQA framework design, vendor scorecard architecture, and Arabic style guide creation for in-house localisation teams.</p>
+        <span class="mx-proof">17-year practitioner &#x00B7; i18n audit &#x00B7; MSA strategy &#x00B7; LQA framework design</span></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     TECHNICAL LEADERSHIP
+═══════════════════════════════ -->
+<div class="section" id="leadership">
+<div class="wrap">
+  <div class="eyebrow rv">04 / Technical Leadership</div>
+  <h2 class="h-section rv d1">Production.<br><b>And the systems<br>that govern it.</b></h2>
+  <p class="body-text rv d2">Long-term enterprise accounts are not sustained by individual output alone. Apple, Toyota, Makita, Canon, and Nissan have each been served for years through linguistic teams I have built, trained, and held to a final quality checkpoint &#x2014; the governance layer that makes 17 years without a missed deliverable possible.</p>
+
+  <!-- Production vs Governance — 1px data-art split -->
+  <div class="gov-art rv d2">
+    <div class="gov-head">Production &#x2014; Direct Translation &amp; Revision Output</div>
+    <div class="ga-row"><span class="ga-label">Apple Care</span><div class="ga-track"><div class="ga-fill" data-w="100" style="width:0"></div></div><span class="ga-val">6,774 tasks</span></div>
+    <div class="ga-row"><span class="ga-label">Toyota</span><div class="ga-track"><div class="ga-fill" data-w="34" style="width:0"></div></div><span class="ga-val">549 tasks</span></div>
+    <div class="ga-row"><span class="ga-label">Makita</span><div class="ga-track"><div class="ga-fill" data-w="35" style="width:0"></div></div><span class="ga-val">571 tasks</span></div>
+    <div class="ga-row"><span class="ga-label">Canon</span><div class="ga-track"><div class="ga-fill" data-w="22" style="width:0"></div></div><span class="ga-val">359 tasks</span></div>
+    <div class="ga-row"><span class="ga-label">Nissan</span><div class="ga-track"><div class="ga-fill" data-w="11" style="width:0"></div></div><span class="ga-val">93 tasks</span></div>
+
+    <div class="gov-head" style="margin-top:36px;">Governance &#x2014; Final Quality Checkpoint &amp; Team Oversight Hours</div>
+    <div class="ga-row"><span class="ga-label">Apple Care</span><div class="ga-track"><div class="ga-fill gov" data-w="100" style="width:0"></div></div><span class="ga-val">100.4 hrs &#x00B7; 405 reviews</span></div>
+    <div class="ga-row"><span class="ga-label">Toyota</span><div class="ga-track"><div class="ga-fill gov" data-w="48" style="width:0"></div></div><span class="ga-val">48.0 hrs &#x00B7; 74 reviews</span></div>
+    <div class="ga-row"><span class="ga-label">Makita</span><div class="ga-track"><div class="ga-fill gov" data-w="37" style="width:0"></div></div><span class="ga-val">36.8 hrs &#x00B7; 77 reviews</span></div>
+    <div class="ga-row"><span class="ga-label">Canon</span><div class="ga-track"><div class="ga-fill gov" data-w="11" style="width:0"></div></div><span class="ga-val">10.8 hrs &#x00B7; 8 reviews</span></div>
+    <div class="ga-row"><span class="ga-label">Nissan</span><div class="ga-track"><div class="ga-fill gov" data-w="4" style="width:0"></div></div><span class="ga-val">2.8 hrs &#x00B7; 4 reviews</span></div>
+  </div>
+
+  <p class="cap-note rv d3" style="margin-top:32px;max-width:var(--prose);"><b>Reading the split:</b> Production volume reflects direct linguistic output. Governance hours reflect the final-instance quality checkpoint &#x2014; the review pass that sits above individual translator and reviewer work, where consistency, terminology adherence, and brand voice are verified before delivery. This is the architecture that allows an account to run for a decade without the client managing quality directly.</p>
+
+  <div class="lead-quote rv d3">
+    <p>Apple Care alone represents <b>6,774 production tasks</b> governed by <b>405 final-review checkpoints</b> across 16 years &#x2014; a ratio of roughly one governance review for every 17 production tasks, sustained without interruption since the account began.</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     PLATFORM AUTHORITY
+═══════════════════════════════ -->
+<div class="section" id="platforms">
+<div class="wrap">
+  <div class="eyebrow rv">05 / Platform Authority</div>
+  <h2 class="h-section rv d1">Inside the platforms<br><b>others cannot name.</b></h2>
+  <p class="body-text rv d2">Access to enterprise clients&#x2019; internal localisation platforms is not granted to general-market translators. These represent the most audited Arabic content pipelines in global technology.</p>
+
+  <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:var(--space-md) 0 14px;" class="rv d1">Apple Internal Localisation Infrastructure</div>
+  <div class="apple-grid rv d1">
+    <div class="ap-cell"><span class="ap-code">ATLAS</span><div class="ap-name">AppleCare Service Certification</div><div class="ap-n">596</div><div class="ap-desc">Arabic localisation of service technician certification courses, repair methodology, and device-specific service guides across iPhone, MacBook, iMac, and iPad.</div></div>
+    <div class="ap-cell"><span class="ap-code">HAIKU</span><div class="ap-name">AppleCare Knowledge Base</div><div class="ap-n">2,530</div><div class="ap-desc">Highest-volume Apple content pipeline. Arabic translation and MTPE of troubleshooting articles, support documentation, and customer-facing technical content.</div></div>
+    <div class="ap-cell"><span class="ap-code">GUTENBERG</span><div class="ap-name">AppleCare Content Migration</div><div class="ap-n">1,274</div><div class="ap-desc">Arabic content migration and LQA across Apple&#x2019;s internal CMS transition. Structural consistency validation at scale.</div></div>
+    <div class="ap-cell"><span class="ap-code">iCLOUD</span><div class="ap-name">iCloud Platform</div><div class="ap-n">162</div><div class="ap-desc">Arabic UI strings and user-facing content for Apple&#x2019;s cloud storage and productivity platform.</div></div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:var(--space-sm) 0 14px;" class="rv d2">Nokia &#x2014; The UI/UX Context School</div>
+  <div class="nokia-exhibit rv d2">
+    <div class="nx-left">
+      <p class="body-text" style="margin-bottom:0;">Nokia (19 tasks, 2012&#x2013;2018) is not a volume account &#x2014; it is the formative discipline behind every RTL/BiDi capability referenced on this page. Job sizes ranged from <b style="color:var(--ink)">3 words to 1,842 words</b>, with a median of 192 words per task: the constrained, ultra-short UI string is the entire craft here. Working inside Symbian and Series 40 character-buffer limits, often across 83 simultaneous language rounds, required direct collaboration with Nokia product engineers to resolve Arabic truncation, RTL mirroring, and display-fit failures before they reached device. This is where production translation became <b style="color:var(--ink)">product localisation engineering.</b></p>
+    </div>
+    <div class="nx-right">
+      <div class="nx-stat"><span class="nx-n">192</span><span class="nx-l">Median words / task</span></div>
+      <div class="nx-stat"><span class="nx-n">3&#x2013;1,842</span><span class="nx-l">Word-count range</span></div>
+      <div class="nx-stat"><span class="nx-n">83</span><span class="nx-l">Simultaneous languages / round</span></div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:var(--space-sm) 0 0;" class="rv d2">Luxury &amp; Ultra-Premium Portfolio</div>
+  <div class="lux-strip rv d2">
+    <div class="lx"><div class="lx-brand">Porsche</div><div class="lx-vol">8 tasks &#x00B7; 3,967 words</div><div class="lx-desc">911 GT3 RS Chronograph brochure. Luxury automotive / precision timepiece crossover content for MENA.</div></div>
+    <div class="lx"><div class="lx-brand">Maserati</div><div class="lx-vol">58 tasks &#x00B7; 157,980 words</div><div class="lx-desc">Full MENA ownership documentation, marketing collateral, and vehicle interface content.</div></div>
+    <div class="lx"><div class="lx-brand">Lamborghini</div><div class="lx-vol">3 tasks &#x00B7; 43,145 words</div><div class="lx-desc">Ultra-luxury vehicle marketing. Includes a Lamborghini/Pagani joint brochure.</div></div>
+    <div class="lx"><div class="lx-brand">Harley-Davidson</div><div class="lx-vol">285 tasks &#x00B7; 281,030 words</div><div class="lx-desc">Complete owner documentation and marketing suite. Lifestyle brand voice adapted to Arabic cultural register.</div></div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:0 0 0;" class="rv d3">Specialised Domains &#x2014; Arabic at the Edge</div>
+  <div class="spec-row rv d3">
+    <div class="sp-cell"><span class="sp-tag">Cybersecurity</span><div class="sp-name">F-Secure</div><p class="sp-body">99 tasks &#x00B7; 40.2 hrs. Arabic cybersecurity product and documentation localisation. One of the most underserved domains in Arabic content.</p></div>
+    <div class="sp-cell"><span class="sp-tag">Clinical Outcomes / eCOA</span><div class="sp-name">Boston Scientific &#x00B7; Bayer &#x00B7; Apobiologix</div><p class="sp-body">Electronic Clinical Outcome Assessments and pharmaceutical regulatory content for multinational clinical trials. Terminology precision is a regulatory requirement.</p></div>
+    <div class="sp-cell"><span class="sp-tag">Heavy Industry &amp; HSE</span><div class="sp-name">Caterpillar &#x00B7; John Deere &#x00B7; Sibelco &#x00B7; Barrick</div><p class="sp-body">Safety-critical Arabic documentation &#x2014; energy isolation (LOTO), HSE protocols, industrial compliance, heavy equipment manuals where precision is a liability issue.</p></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     ACCOUNT EXPLORER
+═══════════════════════════════ -->
+<div class="section" id="accounts">
+<div class="wrap">
+  <div class="eyebrow rv">06 / Account Data</div>
+  <h2 class="h-section rv d1">The evidence,<br><b>by account.</b></h2>
+  <p class="body-text rv d2">Flat-rate equivalence normalises all task types. Select any account. Data current as at June 2026 &#x2014; ongoing.</p>
+  <div class="explorer rv d2 instrument">
+    <div class="ex-list" id="exList"></div>
+    <div class="ex-panel" id="exPanel"></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     CAREER
+═══════════════════════════════ -->
+<div class="section" id="career">
+<div class="wrap">
+  <div class="eyebrow rv">07 / Professional History</div>
+  <h2 class="h-section rv d1">One LSP.<br><b>Seventeen years.</b></h2>
+  <div class="tl rv d1">
+    <div class="tl-item">
+      <div class="tl-when">Apr 2010 &#x2013; Present<br><br>Sr. Reviewer<br>2017&#x2013;2018<br><br>Reviewer<br>2014&#x2013;2016</div>
+      <div>
+        <div class="tl-role">Localisation &amp; LQA Lead &#x00B7; 3rd Party Reviewer</div>
+        <div class="tl-co">Future Group Language Solutions (FutureTrans) &#x00B7; Welocalize supply chain &#x00B7; ISO 27001-certified</div>
+        <span class="tl-sub">Production scale</span>
+        <ul class="bul">
+          <li><div>17,882 tasks &#x00B7; 12.87M raw words &#x00B7; 7,454 verified LQA hours &#x00B7; zero missed deliveries. Annual flat-rate average: 654,379 eq.w (130.9% of single-service baseline).</div></li>
+          <li><div>Multi-service stacking: translation, revision, LQA arbitration, MTPE auditing, and style guide creation delivered concurrently. 106 unique clients in a single year (2015).</div></li>
+        </ul>
+        <span class="tl-sub">Key platforms &amp; capabilities</span>
+        <ul class="bul">
+          <li><div><b>Apple internal systems:</b> ATLAS (596 tasks), HAIKU (2,530 tasks), GUTENBERG (1,274 tasks), iCloud (162 tasks) &#x2014; the most audited Arabic content pipelines in global technology.</div></li>
+          <li><div><b>GuideSim PACK &amp; GO (Scania):</b> Automotive dashboard validation across High/Standard screen profiles, Text ID tracking against Diff files, XTM integration. Toyota OSD (549 tasks / 791K words), Nissan in-car display, Canon OSD hardware.</div></li>
+          <li><div><b>Luxury portfolio:</b> Porsche, Maserati, Lamborghini, Harley-Davidson &#x2014; Arabic premium register across four international luxury marques.</div></li>
+          <li><div><b>Style guide creation:</b> 18 enterprise clients including Renault, Wizz Air, Amazon AWS, Peakon, and a telecom client (424,000-word glossary corpus). ~78 verified hours.</div></li>
+          <li><div><b>Specialist domains:</b> F-Secure (cybersecurity), Boston Scientific/Bayer (clinical eCOA), Caterpillar/John Deere (HSE), UnitedHealthcare MCS, PayPal/Payoneer (FinTech), Twitter/X, Alibaba, Indeed.</div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-when">Jan 2012 &#x2013; Dec 2013</div>
+      <div>
+        <div class="tl-role">Senior Translator</div>
+        <div class="tl-co">Future Group Language Solutions</div>
+        <ul class="bul"><li><div>Arabic &#x2194; English translation across legal, technical, medical, and marketing domains for Fortune 500 clients.</div></li></ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-when">Jul 2008 &#x2013; Dec 2011<br><br>BA English Language<br>&amp; Literature<br>Banha University, 2008</div>
+      <div>
+        <div class="tl-role">Translator</div>
+        <div class="tl-co">Future Group Language Solutions</div>
+        <ul class="bul"><li><div>Technical documentation, marketing, software interfaces. Digitised legacy paper glossaries into structured TM assets for Panasonic and Sony.</div></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     LOCMASTERS STUDIO
+═══════════════════════════════ -->
+<div class="section" id="studio">
+<div class="wrap">
+  <div class="eyebrow rv">08 / LocMasters&#x2122; Studio</div>
+  <h2 class="h-section rv d1">Building the tools<br><b>the market lacks.</b></h2>
+  <p class="body-text rv d2">An Arabic-first AI-powered CAT and LQA platform &#x2014; built because no existing tool solves Arabic localisation quality at the standard this practice operates at.</p>
+  <div class="lm-grid rv d2">
+    <div>
+      <div class="lm-wm">LocMasters<span class="lm-tm">&#x2122;</span></div>
+      <div class="lm-badge"><span class="lm-dot"></span><span class="lm-badge-txt">Active R&amp;D &#x00B7; Stealth Mode</span></div>
+      <p class="lm-desc">Multiple internal iterations deployed and benchmarked across real enterprise workflows. Currently being re-engineered in private development until it achieves market-leading precision and flawless UX benchmarks. Every tool resolves a specific failure mode encountered in 17 years of enterprise Arabic localisation &#x2014; nothing decorative.</p>
+      <div class="lm-stack">
+        <span class="lst">React 18</span><span class="lst">Vite</span><span class="lst">Supabase</span>
+        <span class="lst">Tailwind CSS</span><span class="lst">Anthropic Claude API</span><span class="lst">RTL-native</span>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="t-bar">
+        <div class="t-dot" style="background:#C84040"></div>
+        <div class="t-dot" style="background:#C88840"></div>
+        <div class="t-dot" style="background:#40A860"></div>
+        <span class="t-ttl">locmasters &#x2014; lqi-reviewer v2.4</span>
+      </div>
+      <div class="t-body">
+        <div class="tl-r"><span class="tp">&#x26A1;</span><span class="tk">Framework:</span><span class="tv" style="margin-left:8px">MQM &#x00B7; DQF &#x00B7; J2450</span></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Sample:</span><span class="tv" style="margin-left:6px">30%</span><span class="tk" style="margin-left:14px">Mode:</span><span class="tv" style="margin-left:6px">full-review</span></div>
+        <div class="ts"></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Seg 142</span><span class="tw" style="margin-left:8px">Minor &#x00B7; Terminology</span></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Seg 167</span><span class="tok" style="margin-left:8px">&#x2713; Pass</span></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Seg 219</span><span class="te" style="margin-left:8px">Major &#x00B7; Accuracy &#x2014; flagged</span></div>
+        <div class="ts"></div>
+        <div class="tl-r"><span class="tp">&#x26A1;</span><span class="tk">QA:</span><span class="tv" style="margin-left:8px">Numbers &#x00B7; Tags &#x00B7; RTL &#x00B7; Punct</span></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Errors:</span><span class="tok" style="margin-left:6px">0</span><span class="tk" style="margin-left:14px">Warnings:</span><span class="tw" style="margin-left:6px">2</span></div>
+        <div class="tl-r"><span class="tp">&#x203A;</span><span class="tk">Glossary:</span><span class="tv" style="margin-left:6px">1,248 terms &#x00B7; TM: 87%</span></div>
+        <div class="ts"></div>
+        <div class="tl-r"><span class="tp" style="color:#28BE68">&#x2713;</span><span class="tsc" style="margin-left:6px">LQI Score: 96.4 / 100 &#x00B7; PASS</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="lm-eng-grid rv d3">
+    <div class="lm-eng"><span class="le-c">AI LQI Reviewer</span><div class="le-h">MQM / DQF / J2450 engine</div><p class="le-b">Configurable error weights, severity tiers (Critical / Major / Minor), sample-based batch review.</p></div>
+    <div class="lm-eng"><span class="le-c">Automated QA</span><div class="le-h">Zero false positives</div><p class="le-b">Numbers, tags, RTL validation, Arabic comma, truncation, consistency &#x2014; Sacred Silence philosophy.</p></div>
+    <div class="lm-eng"><span class="le-c">MTPE Engine</span><div class="le-h">ISO 18587 aligned</div><p class="le-b">Fluency auditing, terminological precision, cultural accuracy flags, edit-distance scoring.</p></div>
+    <div class="lm-eng"><span class="le-c">Arabic Proofreader</span><div class="le-h">Native linguistic engine</div><p class="le-b">Hamza, tashkeel normalisation, tanween placement, tatweel removal, formality control.</p></div>
+  </div>
+  <div class="ss rv d3">
+    <div class="ss-q">&#x201C;Sacred Silence&#x201D;</div>
+    <p class="ss-t"><b>The LocMasters&#x2122; UI philosophy.</b> Suppress every notification, badge, and alert that does not require an immediate linguistic judgment call. A false positive is not a warning &#x2014; it is noise that erodes trust in the QA system. The interface earns attention by never wasting it.</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     BRIEF ME
+═══════════════════════════════ -->
+<div class="section" id="contact">
+<div class="wrap">
+  <div class="eyebrow rv">09 / Collaborate</div>
+  <div class="eng-grid rv d1">
+    <div>
+      <div class="eng-h">Let&#x2019;s start<br><i>a project.</i></div>
+      <p class="eng-sub">I partner with enterprise localisation managers, procurement directors, LSP supply chain leads, and product teams to bring Arabic content to the same standard their English content already meets.</p>
+      <div class="c-row"><span class="c-l">Email</span><a href="mailto:sayyed.elattar@gmail.com" class="c-v">sayyed.elattar@gmail.com</a></div>
+      <div class="c-row"><span class="c-l">LinkedIn</span><a href="https://linkedin.com/in/sayed-elattar" target="_blank" class="c-v">linkedin.com/in/sayed-elattar</a></div>
+      <div class="c-row"><span class="c-l">WhatsApp / Mobile</span><a href="tel:+201000219875" class="c-v">+20 10 00219875</a></div>
+      <div class="c-row"><span class="c-l">Location</span><span class="c-v">Cairo, Egypt &#x00B7; Remote &amp; on-site worldwide</span></div>
+    </div>
+    <div>
+      <div class="brief-box">
+        <div class="bb-top"><span class="lm-dot"></span>Available for new partnerships</div>
+        <p class="bb-body">Available for <b>Arabic translation</b>, <b>LQA arbitration</b>, <b>3rd party linguistic review</b>, <b>MTPE auditing</b>, <b>strategic localisation consulting</b>, and <b>linguistic architecture</b>. Remote and on-site with global enterprise clients, LSPs, and localisation technology companies worldwide.</p>
+      </div>
+      <div class="eng-types">
+        <div class="et-head">Engagement types</div>
+        <div class="et-row"><span class="et-name">Translation &amp; Review</span><span class="et-type">Per word / per hour</span></div>
+        <div class="et-row"><span class="et-name">LQA Arbitration</span><span class="et-type">Per hour</span></div>
+        <div class="et-row"><span class="et-name">MTPE Auditing</span><span class="et-type">Per word</span></div>
+        <div class="et-row"><span class="et-name">Strategic Consulting</span><span class="et-type">Scoped project</span></div>
+        <div class="et-row"><span class="et-name">Linguistic Architecture</span><span class="et-type">Scoped project</span></div>
+      </div>
+      <a href="mailto:sayyed.elattar@gmail.com" class="btn-brief">Start a Project &#x2192;</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════
+     TOOLS
+═══════════════════════════════ -->
+<div class="section" id="tools">
+<div class="wrap">
+  <div class="eyebrow rv">Tools &amp; Frameworks</div>
+  <div class="tool-list rv d1">
+    <div class="tool-row"><span class="tc">Quality Frameworks</span><span class="tv-t">MQM, TAUS DQF, J2450, Adequacy-Fluency, ISO 5060:2023, ISO 18587</span></div>
+    <div class="tool-row"><span class="tc">QA Tools</span><span class="tv-t">Xbench, Verifika, Linguistic Toolbox, OctoEditor, TQAuditor, QA Distiller</span></div>
+    <div class="tool-row"><span class="tc">CAT Tools &amp; TMS</span><span class="tv-t">Trados Studio 2007&#x2013;2024, RWS Trados Enterprise, memoQ, Phrase, XTM, Smartling, Passolo, Wordfast Pro, Wordbee, Crowdin</span></div>
+    <div class="tool-row"><span class="tc">UI Simulation</span><span class="tv-t">GuideSim PACK &amp; GO (Scania &#x2014; High / Standard screen profiles) &#x00B7; XTM live context validation</span></div>
+    <div class="tool-row"><span class="tc">MTPE &amp; AI</span><span class="tv-t">MT post-editing &#x00B7; AI output auditing &#x00B7; LLM-assisted review &#x00B7; Prompt engineering (RWS Group Certified) &#x00B7; Agentic AI workflows &#x00B7; Anthropic computer-use API</span></div>
+    <div class="tool-row"><span class="tc">Enterprise QA</span><span class="tv-t">DQF-MQM scorecards &#x00B7; JIRA-integrated LQA &#x00B7; Lionbridge LQS &#x00B7; Welocalize DQF-MQM &#x00B7; TransPerfect QA</span></div>
+    <div class="tool-row"><span class="tc">LocMasters&#x2122; Studio</span><span class="tv-t">AI LQI Reviewer &#x00B7; MTPE Engine &#x00B7; QA Automation &#x00B7; Arabic Proofreader &#x00B7; Glossary Creator (TBX) &#x00B7; TM Maintenance &#x2014; React 18 &#x00B7; Vite &#x00B7; Supabase &#x00B7; Anthropic Claude API &#x2014; Active R&amp;D</span></div>
+    <div class="tool-row"><span class="tc">Compliance</span><span class="tv-t">ISO 27001-certified environment &#x00B7; GDPR-compliant data handling</span></div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <span class="ft-l">&#x00A9; 2026 Sayed Elattar &#x00B7; Arabic Localisation &amp; LQA Authority &#x00B7; Since 2008</span>
+  <div class="ft-r"><span>MQM &#x00B7; DQF</span><span>LocMasters&#x2122;</span><span>Arabic &#x2194; English</span><span>ISO 27001</span></div>
+</footer>
+
+<script>
+const ANNUAL=[
+  {yr:2010,fr:327370},{yr:2011,fr:497756},{yr:2012,fr:633408},{yr:2013,fr:647041},
+  {yr:2014,fr:669688},{yr:2015,fr:640625},{yr:2016,fr:824704},{yr:2017,fr:693028},
+  {yr:2018,fr:961737},{yr:2019,fr:994032},{yr:2020,fr:653422},{yr:2021,fr:955529},
+  {yr:2022,fr:626483},{yr:2023,fr:547982},{yr:2024,fr:451304},{yr:2025,fr:641886},
+  {yr:2026,fr:349077}
+];
+const ACCOUNTS=[
+  {id:'apple',   name:'Apple (All)',     tasks:7289,T:639250, R:1318870,MTPE:223571,H:823.7, FR:1616409},
+  {id:'toyota',  name:'Toyota',          tasks:549, T:108151, R:683078, MTPE:0,     H:493.5, FR:573073},
+  {id:'samsung', name:'Samsung (All)',   tasks:527, T:505090, R:29708,  MTPE:0,     H:21.6,  FR:525349},
+  {id:'ford',    name:'Ford',            tasks:130, T:323305, R:67364,  MTPE:0,     H:477.9, FR:476451},
+  {id:'canon',   name:'Canon (All)',     tasks:359, T:131087, R:449028, MTPE:0,     H:287.3, FR:427436},
+  {id:'makita',  name:'Makita',          tasks:571, T:260840, R:137294, MTPE:2238,  H:38.5,  FR:340231},
+  {id:'otxt',    name:'OpenText',        tasks:601, T:82054,  R:296297, MTPE:38835, H:124.7, FR:280802},
+  {id:'harley',  name:'Harley-Davidson', tasks:285, T:180266, R:100763, MTPE:0,     H:17.5,  FR:235023},
+  {id:'coursera',name:'Coursera',        tasks:106, T:72598,  R:71658,  MTPE:117352,H:154.0, FR:205603},
+  {id:'nissan',  name:'Nissan',          tasks:93,  T:53324,  R:213240, MTPE:97,    H:33.0,  FR:168243},
+  {id:'scania',  name:'Scania',          tasks:274, T:34838,  R:125029, MTPE:31275, H:215.4, FR:166847},
+  {id:'maserati',name:'Maserati',        tasks:58,  T:155375, R:2604,   MTPE:0,     H:35.0,  FR:165428},
+];
+const MAX_FR=ACCOUNTS[0].FR;
+const fmt=n=>n.toLocaleString();
+const fmtS=n=>n>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':
+             n>=1e3?(n/1e3).toFixed(1).replace(/\.0$/,'')+'K':String(n);
+
+/* NAV scroll */
+(function(){
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>60);
+  },{passive:true});
+})();
+
+/* EKG SPARK LINE */
+(function(){
+  const svg=document.getElementById('ekgSvg');
+  const ndl=document.getElementById('ekgNeedle');
+  const tip=document.getElementById('ekgTip');
+  const lbls=document.getElementById('ekgLabels');
+  if(!svg)return;
+  const W=1000,H=100,PAD=14;
+  const vals=ANNUAL.map(d=>d.fr);
+  const mn=Math.min(...vals),mx=Math.max(...vals);
+  const sx=i=>(i/(ANNUAL.length-1))*W;
+  const sy=v=>PAD+(1-(v-mn)/(mx-mn))*(H-PAD*2);
+  const path=ANNUAL.map((a,i)=>`${i===0?'M':'L'}${sx(i).toFixed(1)},${sy(a.fr).toFixed(1)}`).join(' ');
+  const pLen=2400;
+
+  // Gradient area fill
+  const areaPath=path+` L${W},${H} L0,${H} Z`;
+  svg.innerHTML=`
+    <defs>
+      <linearGradient id="ekg-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--ink)" stop-opacity=".10"/>
+        <stop offset="100%" stop-color="var(--ink)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="${areaPath}" fill="url(#ekg-grad)"/>
+    <path d="${path}" fill="none" stroke="var(--ink)" stroke-width="1.5"
+      opacity=".35" stroke-linejoin="round" stroke-linecap="round"
+      stroke-dasharray="${pLen}" stroke-dashoffset="${pLen}">
+      <animate attributeName="stroke-dashoffset" from="${pLen}" to="0"
+        dur="2.2s" begin="0.3s" fill="freeze" calcMode="spline"
+        keySplines="0.25 0.46 0.45 0.94"/>
+    </path>
+    ${ANNUAL.map((a,i)=>`<circle
+      cx="${sx(i).toFixed(1)}" cy="${sy(a.fr).toFixed(1)}"
+      r="${a.fr===mx?5:2.5}"
+      fill="${a.fr===mx?'var(--red)':'rgba(242,237,230,.3)'}"/>`).join('')}
+    <rect x="0" y="0" width="${W}" height="${H}" fill="transparent"
+      id="ekgHit" style="cursor:crosshair"/>`;
+
+  ANNUAL.forEach((a,i)=>{
+    const s=document.createElement('span');s.className='ekg-yr';
+    s.textContent=i%4===0?String(a.yr).slice(2):'';lbls.appendChild(s);
+  });
+
+  const hit=document.getElementById('ekgHit');
+  if(hit){
+    const upd=e=>{
+      const r=svg.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width;
+      const idx=Math.max(0,Math.min(Math.round(px*(ANNUAL.length-1)),ANNUAL.length-1));
+      const a=ANNUAL[idx];
+      const pct=(idx/(ANNUAL.length-1))*100;
+      ndl.style.left=pct+'%';ndl.style.opacity='1';
+      tip.style.left=pct+'%';tip.style.opacity='1';
+      tip.textContent=a.yr+' \u00B7 '+(a.fr/1000).toFixed(0)+'K eq.w \u00B7 '+
+        (a.fr/500000*100).toFixed(0)+'% of baseline';
+    };
+    hit.addEventListener('mousemove',upd);
+    hit.addEventListener('mouseleave',()=>{
+      ndl.style.opacity='0';tip.style.opacity='0';
+    });
+  }
+})();
+
+/* CAPACITY CLOCK SVG */
+(function(){
+  const svg=document.getElementById('clockSvg');
+  if(!svg)return;
+  const CX=160,CY=160,R_OUTER=140,R_MID=112,R_INNER=84;
+  const GAP_DEG=30; // gap at bottom
+  const startDeg=90+GAP_DEG/2;
+  const totalDeg=360-GAP_DEG;
+
+  function polarToXY(cx,cy,r,deg){
+    const rad=(deg-90)*Math.PI/180;
+    return {x:cx+r*Math.cos(rad), y:cy+r*Math.sin(rad)};
+  }
+
+  function arcPath(cx,cy,r,startD,endD,sw=6){
+    const s=polarToXY(cx,cy,r,startD);
+    const e=polarToXY(cx,cy,r,endD);
+    const large=endD-startD>180?1:0;
+    return `M ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y}`;
+  }
+
+  // Three arcs:
+  // 1. baseline (100%) — full sweep in ghost
+  // 2. target (70%) — rule2 colour
+  // 3. actual (130.9%) — capped at 100% of sweep = full + goes past but we show 100% cap
+  const baseEnd=startDeg+totalDeg;
+  const targetEnd=startDeg+totalDeg*0.70;
+  const actualPct=Math.min(1.309,1); // cap display at 100% arc
+  const actualEnd=startDeg+totalDeg*actualPct;
+
+  svg.setAttribute('viewBox','0 0 320 320');
+  svg.innerHTML=`
+    <!-- Background rings -->
+    <path d="${arcPath(CX,CY,R_OUTER,startDeg,baseEnd,1)}"
+      fill="none" stroke="rgba(242,237,230,.06)" stroke-width="10"/>
+    <path d="${arcPath(CX,CY,R_MID,startDeg,baseEnd,1)}"
+      fill="none" stroke="rgba(242,237,230,.06)" stroke-width="10"/>
+    <path d="${arcPath(CX,CY,R_INNER,startDeg,baseEnd,1)}"
+      fill="none" stroke="rgba(242,237,230,.06)" stroke-width="10"/>
+
+    <!-- Outer: actual career avg (130.9% = full arc, cardinal red) -->
+    <path id="arc-actual" d="${arcPath(CX,CY,R_OUTER,startDeg,startDeg,1)}"
+      fill="none" stroke="#C41E3A" stroke-width="10" stroke-linecap="round"
+      data-end="${actualEnd}">
+      <animate attributeName="d"
+        from="${arcPath(CX,CY,R_OUTER,startDeg,startDeg+0.01,1)}"
+        to="${arcPath(CX,CY,R_OUTER,startDeg,actualEnd,1)}"
+        dur="1.8s" begin="0.5s" fill="freeze" calcMode="spline"
+        keySplines="0.25 0.46 0.45 0.94"/>
+    </path>
+
+    <!-- Middle: 70% target floor -->
+    <path d="${arcPath(CX,CY,R_MID,startDeg,targetEnd,1)}"
+      fill="none" stroke="rgba(242,237,230,.35)" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Inner: 100% baseline -->
+    <path d="${arcPath(CX,CY,R_INNER,startDeg,baseEnd,1)}"
+      fill="none" stroke="rgba(242,237,230,.18)" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Centre text -->
+    <text x="${CX}" y="${CY-14}" text-anchor="middle"
+      font-family="DM Serif Display, Georgia, serif"
+      font-size="42" fill="#F2EDE6" font-style="italic">11.1M</text>
+    <text x="${CX}" y="${CY+14}" text-anchor="middle"
+      font-family="IBM Plex Mono, monospace"
+      font-size="10" fill="rgba(242,237,230,.4)" letter-spacing="1">EQ. WORDS</text>
+    <text x="${CX}" y="${CY+34}" text-anchor="middle"
+      font-family="IBM Plex Mono, monospace"
+      font-size="10" fill="rgba(242,237,230,.4)" letter-spacing="1">2010 &#x2013; 2026</text>
+
+    <!-- Legend dots -->
+    <circle cx="${CX-50}" cy="${CY+76}" r="4" fill="#C41E3A"/>
+    <text x="${CX-40}" y="${CY+80}" font-family="IBM Plex Mono,monospace"
+      font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">CAREER AVG 130.9%</text>
+    <circle cx="${CX-50}" cy="${CY+96}" r="4" fill="rgba(242,237,230,.35)"/>
+    <text x="${CX-40}" y="${CY+100}" font-family="IBM Plex Mono,monospace"
+      font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">70% TARGET FLOOR</text>
+    <circle cx="${CX-50}" cy="${CY+116}" r="4" fill="rgba(242,237,230,.18)"/>
+    <text x="${CX-40}" y="${CY+120}" font-family="IBM Plex Mono,monospace"
+      font-size="9" fill="rgba(242,237,230,.4)" letter-spacing="1">100% BASELINE</text>
+  `;
+})();
+
+/* EXPLORER */
+let activeId='apple';
+(function(){
+  const list=document.getElementById('exList');
+  ACCOUNTS.forEach(a=>{
+    const d=document.createElement('div');
+    d.className='ex-item'+(a.id===activeId?' on':'');
+    d.innerHTML='<div class="ei-n">'+a.name+'</div><div class="ei-f">'+fmtS(a.FR)+' eq.w</div>';
+    d.addEventListener('click',()=>{
+      document.querySelectorAll('.ex-item').forEach(c=>c.classList.remove('on'));
+      d.classList.add('on');activeId=a.id;renderPanel(a);
+    });
+    list.appendChild(d);
+  });
+  renderPanel(ACCOUNTS[0]);
+})();
+
+function renderPanel(a){
+  const p=document.getElementById('exPanel');if(!p)return;
+  const frT=a.T,frR=a.R*.5,frM=a.MTPE*.5,frH=a.H*250,tot=a.FR;
+  const pc=v=>tot>0?(v/tot*100).toFixed(1):'0.0';
+  const pC=(tot/MAX_FR*100).toFixed(1);
+  const rank=ACCOUNTS.findIndex(x=>x.id===a.id)+1;
+  const share=(tot/11115445*100).toFixed(1);
+  p.innerHTML=
+    '<div class="ep-name">'+a.name+'</div>'+
+    '<div class="ep-meta">'+fmt(a.tasks)+' tasks \u00B7 Rank #'+rank+' \u00B7 '+share+'% of career total</div>'+
+    '<div class="ep-tracks">'+
+    epTrack('Translation \u00D7 1.0',fmt(Math.round(frT)),pc(frT),'var(--at)')+
+    epTrack('Revision \u00D7 0.5',  fmt(Math.round(frR)),pc(frR),'var(--ar)')+
+    epTrack('MTPE \u00D7 0.5',       fmt(Math.round(frM)),pc(frM),'var(--am)')+
+    epTrack('LQA \u00B7 250 eq.w/hr',fmt(Math.round(frH)),pc(frH),'var(--ah)')+
+    '</div>'+
+    '<div class="ep-fr">'+
+    '<div class="ep-frl">Flat-rate total vs. career leader</div>'+
+    '<div class="ep-frn">'+fmtS(tot)+'<em>eq. translation words</em></div>'+
+    '<div class="ep-frr"><div class="ep-frf" data-w="'+pC+'" style="width:0"></div></div>'+
+    '<div class="ep-frc">Rank #'+rank+' of 12 \u00B7 '+share+'% of 11,115,445 career total \u00B7 June 2026</div>'+
+    '</div>';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    p.querySelectorAll('[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  }));
+}
+
+function epTrack(name,val,pct,color){
+  return '<div>'+
+    '<div class="ep-th">'+
+      '<span class="ep-tn">'+name+'</span>'+
+      '<span class="ep-tv" style="color:'+color+'">'+val+'<span class="ep-tp">'+pct+'%</span></span>'+
+    '</div>'+
+    '<div class="ep-rail"><div class="ep-fill" data-w="'+pct+'" style="width:0;background:'+color+'"></div></div>'+
+  '</div>';
+}
+
+/* REVEAL OBSERVER */
+const rObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll('[data-w]').forEach((b,i)=>{
+      setTimeout(()=>{
+        b.style.width=Math.min(parseFloat(b.dataset.w),100)+'%';
+        b.classList.add('lit');
+      },i*60);
+    });
+  });
+},{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>rObs.observe(el));
+</script>
+</body>
+</html>
