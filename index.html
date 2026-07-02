@@ -1336,7 +1336,7 @@ const ANNUAL=[
 const ACCOUNTS=[
   {id:'apple',   name:'Apple (All)',     tasks:7388, T:658206, R:1329238,MTPE:226089,H:863.1, FR:1651639},
   {id:'canon',   name:'Canon (All)',     tasks:475,  T:222395, R:517225, MTPE:0,     H:425.3, FR:587343},
-  {id:'samsung', name:'Samsung (All)',   tasks:648,  T:561298, R:34429,  MTPE:0,     H:22.1,  FR:584043},
+  {id:'samsung', name:'Samsung (All)',   tasks:664,  T:572337, R:34429,  MTPE:0,     H:23.1,  FR:595331},
   {id:'toyota',  name:'Toyota',          tasks:551,  T:108151, R:683522, MTPE:0,     H:499.0, FR:574670},
   {id:'ford',    name:'Ford',            tasks:156,  T:327579, R:67718,  MTPE:0,     H:477.9, FR:480902},
   {id:'makita',  name:'Makita',          tasks:571,  T:260840, R:137294, MTPE:2238,  H:38.5,  FR:340231},
@@ -1554,7 +1554,7 @@ function renderPanel(a){
   const pc=v=>tot>0?(v/tot*100).toFixed(1):'0.0';
   const pC=(tot/MAX_FR*100).toFixed(1);
   const rank=ACCOUNTS.findIndex(x=>x.id===a.id)+1;
-  const share=(tot/11111651*100).toFixed(1);
+  const share=(tot/11122939*100).toFixed(1);
   p.innerHTML=
     '<div class="ep-name">'+a.name+'</div>'+
     '<div class="ep-meta">'+fmt(a.tasks)+' tasks \u00B7 Rank #'+rank+' \u00B7 '+share+'% of career total</div>'+
