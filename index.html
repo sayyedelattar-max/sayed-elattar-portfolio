@@ -227,8 +227,8 @@ nav.scrolled {
 
 /* ── REVEAL ANIMATION ───────────────────────────────────────────────────── */
 .rv {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .7s ease, transform .7s ease;
+  opacity: 0; transform: translateY(28px) scale(.985);
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
 }
 .rv.in { opacity: 1; transform: none; }
 .rv.d1 { transition-delay: .08s; }
@@ -245,6 +245,7 @@ nav.scrolled {
   display: flex; flex-direction: column; justify-content: space-between;
   padding: clamp(100px, 12vw, 160px) clamp(24px, 5vw, 72px) clamp(48px, 6vw, 72px);
   max-width: var(--max); margin: 0 auto;
+  position: relative; overflow: hidden;
 }
 .hero-claim {
   flex: 1; display: flex; flex-direction: column; justify-content: center;
@@ -989,6 +990,15 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
     <div class="da-row"><span class="da-label">Cybersecurity / Enterprise IT</span><div class="da-track"><div class="da-fill" data-w="14" style="width:0"></div></div><span class="da-val">130+</span></div>
     <div class="da-row"><span class="da-label">Legal / Regulatory</span><div class="da-track"><div class="da-fill" data-w="10" style="width:0"></div></div><span class="da-val">95+</span></div>
   </div>
+
+  <!-- Geographic Reach bars — same proven pattern, new dimension -->
+  <div class="domain-art rv d3" style="margin-top:var(--space-md);">
+    <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:22px;">Geographic Reach &#x2014; Word Volume by Region</div>
+    <div class="da-row"><span class="da-label">North America &#x00B7; led by Apple</span><div class="da-track"><div class="da-fill" data-w="100" style="width:0"></div></div><span class="da-val">3.5M+</span></div>
+    <div class="da-row"><span class="da-label">East Asia &#x00B7; led by Canon</span><div class="da-track"><div class="da-fill" data-w="72" style="width:0"></div></div><span class="da-val">2.6M+</span></div>
+    <div class="da-row"><span class="da-label">Europe &#x00B7; led by Scania</span><div class="da-track"><div class="da-fill" data-w="11" style="width:0"></div></div><span class="da-val">383K+</span></div>
+    <div class="da-row"><span class="da-label">SE Asia &#x00B7; led by Sea Tongue</span><div class="da-track"><div class="da-fill" data-w="4" style="width:0"></div></div><span class="da-val">129K+</span></div>
+  </div>
 </div>
 </div>
 
@@ -1099,7 +1109,7 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
     <div class="mx">
       <div class="mx-l"><div class="mx-fr">Friction 06 / Premium Register</div><div class="mx-h">Arabic luxury copy that reads as translated rather than authored. Brand voice that does not survive market crossing.</div></div>
       <div class="mx-r"><div class="mx-cap-tag">Premium Brand Voice &amp; Transcreation</div>
-        <p class="mx-body"><b>Porsche</b> (911 GT3 RS Chronograph brochure &#x2014; automotive/timepiece crossover), <b>Maserati</b> (58 tasks / 157,980 words), <b>Lamborghini</b> (43,145 words including Pagani joint brochure), <b>Harley-Davidson</b> (293 tasks / 287,454 words). <b>Belkin</b> (442 tasks / 58,302 words across 10 years, 2016&#x2013;2026): consumer tech marketing and product packaging copy &#x2014; short-form, conversion-focused Arabic for a premium lifestyle electronics brand, sustained across product launches, campaign copy, and packaging refreshes. Also: Apple, Microsoft, Canva, Logitech, AMD, HP, IKEA, Twitter/X, Indeed, Alibaba for MENA brand voice adaptation.</p>
+        <p class="mx-body"><b>Porsche</b> (911 GT3 RS Chronograph brochure &#x2014; automotive/timepiece crossover), <b>Maserati</b> (58 tasks / 157,980 words), <b>Lamborghini</b> (43,145 words including Pagani joint brochure), <b>Harley-Davidson</b> (293 tasks / 287,454 words). <b>Belkin</b> (442 tasks / 58,302 words across 10 years, 2016&#x2013;2026): consumer tech marketing and product packaging copy &#x2014; short-form, conversion-focused Arabic for a premium lifestyle electronics brand, sustained across product launches, campaign copy, and packaging refreshes. Also: Volvo, Renault, Cisco, Lenovo, Huawei, Kyocera, Xerox, Avaya, Genesys, Barco, Sibelco, Avigilon for MENA brand voice adaptation.</p>
         <span class="mx-proof">Porsche &#x00B7; Maserati &#x00B7; Lamborghini &#x00B7; Harley-Davidson &#x00B7; Belkin &#x00B7; 5 premium &amp; lifestyle marques</span></div>
     </div>
 
@@ -1218,6 +1228,18 @@ footer { border-top: 1px solid var(--rule); padding: clamp(20px, 3vw, 28px) clam
       <div class="nx-stat"><span class="nx-n">201</span><span class="nx-l">Proofreading hours</span></div>
       <div class="nx-stat"><span class="nx-n">4</span><span class="nx-l">Tasks, Jan&#x2013;Apr 2026</span></div>
       <div class="nx-stat"><span class="nx-n">New</span><span class="nx-l">Domain: rail &amp; tunnel eng.</span></div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:var(--sz-mono);color:var(--faint);letter-spacing:2.5px;text-transform:uppercase;margin:var(--space-sm) 0 14px;" class="rv d2">Sea Tongue &#x2014; Remote Across Time Zones</div>
+  <div class="nokia-exhibit rv d2">
+    <div class="nx-left">
+      <p class="body-text" style="margin-bottom:0;">Sea Tongue, a Future Group company, 2011&#x2013;2014: 79 tasks delivered fully remote, working East Asia business hours from Egypt &#x2014; production and quality held to the same standard on a shifted clock as on a standard one. Early evidence that the discipline behind this work isn&rsquo;t tied to a specific timezone or office.</p>
+    </div>
+    <div class="nx-right">
+      <div class="nx-stat"><span class="nx-n">79</span><span class="nx-l">Tasks, 2011&#x2013;2014</span></div>
+      <div class="nx-stat"><span class="nx-n">123K</span><span class="nx-l">Words (T+R combined)</span></div>
+      <div class="nx-stat"><span class="nx-n">East Asia</span><span class="nx-l">Remote coverage hours</span></div>
     </div>
   </div>
 
@@ -1424,13 +1446,24 @@ const ACCOUNTS=[
   {id:'ford',    name:'Ford',            tasks:156,  T:327579, R:67718,  MTPE:0,     H:477.9, FR:480902},
   {id:'makita',  name:'Makita',          tasks:571,  T:260840, R:137294, MTPE:2238,  H:38.5,  FR:340231},
   {id:'otxt',    name:'OpenText',        tasks:601,  T:82054,  R:296297, MTPE:38835, H:124.7, FR:280802},
+  {id:'hp',      name:'HP',              tasks:366,  T:253587, R:1294,   MTPE:42,    H:53.7,  FR:267685},
   {id:'coursera',name:'Coursera',        tasks:109,  T:72598,  R:188658, MTPE:117352,H:154.0, FR:264103},
   {id:'harley',  name:'Harley-Davidson', tasks:293,  T:186691, R:100763, MTPE:0,     H:17.8,  FR:241510},
   {id:'nissan',  name:'Nissan',          tasks:95,   T:53690,  R:213240, MTPE:97,    H:71.0,  FR:178109},
+  {id:'sony',    name:'Sony (All)',      tasks:276,  T:121698, R:46094,  MTPE:0,     H:100.0, FR:169744},
   {id:'scania',  name:'Scania',          tasks:274,  T:34838,  R:125029, MTPE:31275, H:215.4, FR:166847},
   {id:'maserati',name:'Maserati',        tasks:58,   T:155375, R:2604,   MTPE:0,     H:35.0,  FR:165428},
+  {id:'seatongue',name:'Sea Tongue',     tasks:79,   T:114969, R:8228,   MTPE:0,     H:38.5,  FR:128708},
+  {id:'nikon',   name:'Nikon',           tasks:26,   T:13290,  R:26259,  MTPE:0,     H:265.3, FR:92747},
   {id:'google',  name:'Google',          tasks:62,   T:84622,  R:0,      MTPE:0,     H:17.5,  FR:88997},
-  {id:'microsoft',name:'Microsoft (incl. Xbox)', tasks:96, T:18752, R:3550, MTPE:0,   H:27.7,  FR:27443},
+  {id:'johndeere',name:'John Deere',     tasks:127,  T:29762,  R:79826,  MTPE:17613, H:12.3,  FR:81569},
+  {id:'cisco',   name:'Cisco',           tasks:92,   T:44177,  R:29751,  MTPE:0,     H:90.0,  FR:81555},
+  {id:'caterpillar',name:'Caterpillar',  tasks:21,   T:0,      R:59150,  MTPE:93280, H:3.0,   FR:76965},
+  {id:'epson',   name:'EPSON',           tasks:301,  T:7641,   R:45597,  MTPE:0,     H:97.1,  FR:54705},
+  {id:'renault', name:'Renault',         tasks:57,   T:44156,  R:6748,   MTPE:0,     H:11.4,  FR:50380},
+  {id:'belkin',  name:'Belkin',          tasks:442,  T:16222,  R:42080,  MTPE:0,     H:47.7,  FR:49193},
+  {id:'microsoft',name:'Microsoft (incl. Xbox)', tasks:183, T:21097, R:33246, MTPE:20, H:32.2, FR:45790},
+  {id:'panasonic',name:'Panasonic',      tasks:25,   T:10520,  R:6084,   MTPE:0,     H:1.0,   FR:13812},
 ];
 const MAX_FR=ACCOUNTS[0].FR;
 const fmt=n=>n.toLocaleString();
